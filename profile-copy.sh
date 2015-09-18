@@ -1,0 +1,1 @@
+cp /home/codio/workspace/ipython_config.py /home/codio/.ipython/profile_nbserver
