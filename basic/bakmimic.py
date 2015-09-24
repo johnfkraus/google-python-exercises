@@ -44,52 +44,11 @@ columns, so the output looks better.
 import random
 import sys
 
-def print_dict(dict):
-  for k, v in dict.items(): 
-    print k, '>', v
-
-def print_dict_count(dict):
-  for k, v in dict.items(): 
-    print k, '>', v, '; len(v) = ', len(v)
 
 def mimic_dict(filename):
   """Returns mimic dict mapping each word to list of words which follow it."""
   # +++your code here+++
-  db = False # debugging messages on?
-  dict = {}
-  file = open(filename, 'rU')
-  contents = file.read()
-  contents_list = contents.split()
-  # print 'len = ', len(contents_list)
-  dict[''] = [contents_list[0]]
-  i = 0
-  while i < len(contents_list)-1:
-    if db: print 'line 59', print_dict(dict)
-    word1 = contents_list[i]
-    word2 = contents_list[i+1]
-    if db: print 'line 60; i = ', i, '/', len(contents_list),'; ', word1,'->', word2
-    if word1 in dict:
-      if db: print 'line 62; i = ', i, '/', len(contents_list),'; ', word1,'->', word2, '; dict[', word1, '] = ', dict[word1]
-      value_list = dict[word1]
-      if db: print 'line 64; i = ', i, '/', len(contents_list),';', word1,'->', word2, '; value_list = ', value_list
-      if db: print 'type(value_list) = ', type(value_list)
-      # duplicates are not added to the values list, although this was not an
-      # explicit direction; duplicates might appropriately reflect word use
-      # probability
-      if word2 not in value_list: 
-        value_list.append(word2)
-        dict[word1] = value_list
-    else:
-      # word1 is not already in dict; add it
-      dict[word1] = [word2]
-      if db: print 'line 73; i = ', i, '/', len(contents_list),'; ', word1,'->', word2, '; dict[', word1, '] = ', dict[word1], 'type(dict[word1]) = ', type(dict[word1])
-    i+=1
-  if db: print dict
-  if db: print 'len(dict) = ', len(dict)
-  if db: print_dict(dict)
-  if db: print_dict_count(dict)
-  if db: print 'dict = ', dict
-  return dict
+  return
 
 
 def print_mimic(mimic_dict, word):
