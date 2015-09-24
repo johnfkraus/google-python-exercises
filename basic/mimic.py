@@ -75,7 +75,7 @@ def mimic_dict(filename):
       if db: print 'type(value_list) = ', type(value_list)
       # duplicates are not added to the values list, although this was not an
       # explicit direction; duplicates might appropriately reflect word use
-      # probability
+      # probability; but watch out for repeating words in output!
       if word2 not in value_list: 
         value_list.append(word2)
         dict[word1] = value_list
@@ -91,10 +91,32 @@ def mimic_dict(filename):
   if db: print 'dict = ', dict
   return dict
 
+def pick_random_from_list(list):
+  # print '95 list = ', list
+  if len(list) > 1:
+    # print random.randrange(0, len(list)-1)
+    return list[random.randrange(0, len(list)-1)]
+  else:
+  # return list(random.randrange(0, len(list)-1))
+    return list[0]
+  return
 
 def print_mimic(mimic_dict, word):
   """Given mimic dict and start word, prints 200 random words."""
   # +++your code here+++
+  # print word
+  # list = mimic_dict[word]
+  # print mimic_dict[word] # returns list
+  i = 0
+  string = ''
+  while i < 200:
+    list = mimic_dict[word]
+    word = pick_random_from_list(list)
+    # print word
+    string = string + ' ' +  word
+    i+=1
+
+  print string
   return
 
 
