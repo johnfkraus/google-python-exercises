@@ -84,10 +84,7 @@ def total_word_count(filename):
   word_count = 0
   for tuple in sorted(dict.items(), key=get_count, reverse=True):
     word_count+= tuple[1]
-  print word_count
   return word_count
- 
- 
 
 
 ###
@@ -103,8 +100,6 @@ def main():
   filename = sys.argv[2]
   if option == '--count':
     print_words(filename)
-  elif option == '--wcount':
-    total_word_count(filename)
   elif option == '--topcount':
     print_top(filename)
   else:
