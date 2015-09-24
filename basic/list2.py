@@ -20,25 +20,6 @@ def remove_adjacent(nums):
     dict[num] = 1
   return dict.keys()
 
-"""
-  for num in nums: 
-    print '19 nums = ', nums
-    num_index = nums.index(num) 
-    print 'num_index: ', num_index
-    next_num_index = nums.index(num) + 1
-    print 'next_num_index: ', next_num_index
-    while nums[num_index] == nums[num_index+1]:
-      print 'equal'
-
-  return nums
-"""
-"""
-    while num == nums[nums.index(num)+1]
-      print num, '==',  nums[nums.index(num)+1]
-      nums.remove(nums[nums.index(num)+1])
-      print '23 nums = ', nums
-"""
-
 
 # E. Given two lists sorted in increasing order, create and return a merged
 # list of all the elements in sorted order. You may modify the passed in lists.
