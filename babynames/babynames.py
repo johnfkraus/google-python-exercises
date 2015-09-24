@@ -41,6 +41,38 @@ def extract_names(filename):
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
   # +++your code here+++
+  print 'running extract_names'
+  name_list = []
+  file = open(filename, 'rU')
+  print file
+  contents = file.read()
+  # print 'contents = ', contents
+  match = re.search(r'<h3 align="center">Popularity in (1990)<\/h3>', contents)
+
+  if match:                      
+    print 'found', match.group() 
+    print 'found', match.group(1) 
+    name_list.append(match.group(1))
+  else:
+    print 'did not find'
+
+
+  #  match_list = re.findall(r'<tr align="right"><td>\d+<\/td><td>\w+<\/td><td>\w+<\/td>' , contents)
+  match_list_tuples = re.findall(r'<tr align="right"><td>(\d+)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>' , contents)
+
+  if match_list_tuples:
+    # print 'found', match.group() 
+    # print 'found', match_list
+    print 'found', match_list_tuples
+    # name_list.append(match.group(1))
+  else:
+    print 'did not find'
+
+
+
+
+
+  print name_list
   return
 
 
@@ -48,8 +80,10 @@ def main():
   # This command-line parsing code is provided.
   # Make a list of command line arguments, omitting the [0] element
   # which is the script itself.
+  print 'running main'
+  
   args = sys.argv[1:]
-
+  print args
   if not args:
     print 'usage: [--summaryfile] file [file ...]'
     sys.exit(1)
@@ -63,6 +97,8 @@ def main():
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
+  for filename in args:
+    extract_names(filename)
   
 if __name__ == '__main__':
   main()
