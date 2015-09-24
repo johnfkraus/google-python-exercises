@@ -115,7 +115,6 @@ def print_mimic(mimic_dict, word):
     # print word
     string = string + ' ' +  word
     i+=1
-
   print string
   return
 
@@ -125,7 +124,6 @@ def main():
   if len(sys.argv) != 2:
     print 'usage: ./mimic.py file-to-read'
     sys.exit(1)
-
   dict = mimic_dict(sys.argv[1])
   print_mimic(dict, '')
 
