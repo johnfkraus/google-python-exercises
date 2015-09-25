@@ -13,46 +13,10 @@ import shutil
 import commands
 
 """
-'Copy Special' exercise
-https://developers.google.com/edu/python/exercises/copy-special
-The copyspecial.py program takes one or more directories as its arguments.
-notes: zip -j
-
-
+Copy Special exercise
 """
 # +++your code here+++
 # Write functions and modify main() to call them
-
-def List(dir):
-  cmd = 'ls -l ' + dir
-  print 'about to do this:', cmd
-  # return
-  (status, output) = commands.getstatusoutput(cmd)
-  if status:
-    # print sys.stderr, 'there was an error:', output
-    print sys.stderr.write('there was an error:' + output)
-    sys.exit(1)
-  print output
-
-""" 
-  filenames = os.listdir(dir)
-  for filename in filenames:
-    path = os.path.join(dir, filename) # creates a valid path
-    print path
-    print os.path.abspath(path)
-"""
-# suggested functions
-def get_special_paths(dir):
-  # returns a list of the absolute paths of the special files in the given directory
-  return
-
-def copy_to(paths, dir):
-  # given a list of paths, copies those files into the given directory
-  return
-
-def zip_to(paths, zippath): 
-  # given a list of paths, zip those files up into the given zipfile
-  return
 
 
 def main():
@@ -88,8 +52,3 @@ def main():
   
 if __name__ == "__main__":
   main()
-
-
-
-
-

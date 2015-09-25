@@ -42,17 +42,10 @@ def List(dir):
     print os.path.abspath(path)
 """
 # suggested functions
-def get_special_paths(dir):
-  # returns a list of the absolute paths of the special files in the given directory
-  return
+get_special_paths(dir) -- returns a list of the absolute paths of the special files in the given directory
+copy_to(paths, dir) given a list of paths, copies those files into the given directory
+zip_to(paths, zippath) given a list of paths, zip those files up into the given zipfile
 
-def copy_to(paths, dir):
-  # given a list of paths, copies those files into the given directory
-  return
-
-def zip_to(paths, zippath): 
-  # given a list of paths, zip those files up into the given zipfile
-  return
 
 
 def main():
