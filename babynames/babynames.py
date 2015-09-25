@@ -64,6 +64,8 @@ def extract_names(filename):
     # print 'found', match.group() 
     # print 'found', match_list
     print 'found', match_list_tuples
+    for tuple in match_list_tuples:
+      print tuple[0], tuple[1], tuple[2]
     # name_list.append(match.group(1))
   else:
     print 'did not find'
