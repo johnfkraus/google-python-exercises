@@ -86,6 +86,7 @@ def copy_to(paths, dir):
 
 def zip_to(paths, zippath): 
   # given a list of paths, zip those files up into the given zipfile
+  print 'need to implement zip_to method'
   return
 
 
@@ -123,10 +124,12 @@ def main():
   spec_paths_list = []
   for source_dir in args:
     spec_paths_list.extend(get_special_paths(source_dir))
-    
 
   if todir:
     copy_to(spec_paths_list, todir)
+
+  if tozip:
+    zip_to(paths, zippath)
 
 if __name__ == "__main__":
   main()
