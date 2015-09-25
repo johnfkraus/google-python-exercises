@@ -40,42 +40,72 @@ def extract_names(filename):
   followed by the name-rank strings in alphabetical order.
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
-  # +++your code here+++
-  print 'running extract_names'
   name_list = []
+  """
+  apparently the baby name dict is envisioned, for simplicity, 
+  as gender-agnostic; from the video on YouTube: if a name is both 
+  male and female, it goes in the dictionary once with the popularity 
+  rank integer representing the highest popularity; i.e., use the 
+  lowest integer; 
+  """
+  # +++your code here+++
+  db = False # are we printing debugging messages?
+  print 'running extract_names'
+  year = ''
+  simple_babyname_dict = {}
+  complete_babyname_dict = {}
   file = open(filename, 'rU')
-  print file
+  print 'file:', file
   contents = file.read()
   # print 'contents = ', contents
+  # find the year
   match = re.search(r'<h3 align="center">Popularity in (1990)<\/h3>', contents)
 
   if match:                      
-    print 'found', match.group() 
-    print 'found', match.group(1) 
+    if db: print 'found match.group: ', match.group() 
+    if db: print 'found match.group(1): ', match.group(1) 
     name_list.append(match.group(1))
+    print 'name_list: ', name_list
   else:
-    print 'did not find'
+    print 'did not find year!'
 
-
-  #  match_list = re.findall(r'<tr align="right"><td>\d+<\/td><td>\w+<\/td><td>\w+<\/td>' , contents)
+  # find names and ranks in html table
   match_list_tuples = re.findall(r'<tr align="right"><td>(\d+)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>' , contents)
 
   if match_list_tuples:
     # print 'found', match.group() 
     # print 'found', match_list
-    print 'found', match_list_tuples
+    print 'len(match_list_tuples):', len(match_list_tuples)
+    if db: print 'found', match_list_tuples
     for tuple in match_list_tuples:
-      print tuple[0], tuple[1], tuple[2]
+      if db: print tuple[0], tuple[1], tuple[2]
+      # insert the list of male names into the dict
+      simple_babyname_dict[tuple[1]] = tuple[0]
+      if db: print tuple[1], tuple[0], tuple[2]
+      if db: print 'tuple: ', tuple
+      # insert the list of female names into the dict
+      if tuple[2] not in simple_babyname_dict:
+        simple_babyname_dict[tuple[2]] = tuple[0]
+        if db: print tuple[2], tuple[0]
+      else:
+        if db: print tuple[2], 'ranks', tuple[0], 'as girl name,', simple_babyname_dict[tuple[2]], 'as boy name'
+        # dict_rank = simple_babyname_dict[tuple[2]]
+        best_rank = min( simple_babyname_dict[tuple[2]], tuple[0])
+        simple_babyname_dict[tuple[2]] = best_rank
+        if db: print tuple[2], simple_babyname_dict[tuple[2]] 
     # name_list.append(match.group(1))
   else:
-    print 'did not find'
+    print 'did not find names and ranks in html table'
 
-
-
-
-
-  print name_list
-  return
+  print len(simple_babyname_dict)
+  for k, v in simple_babyname_dict.items(): 
+    if db: print k, '>', v
+    string = '%s %s' % (k, v)
+    if db: print string 
+    name_list.append(string)    
+    
+  print 'name_list:', name_list, 'len:', len(name_list)
+  return name_list
 
 
 def main():
