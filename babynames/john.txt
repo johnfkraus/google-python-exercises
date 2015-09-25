@@ -1,0 +1,10 @@
+baby1990.html.summary:John 12
+baby1992.html.summary:John 14
+baby1994.html.summary:John 15
+baby1996.html.summary:John 15
+baby1998.html.summary:John 15
+baby2000.html.summary:John 14
+baby2002.html.summary:John 17
+baby2004.html.summary:John 18
+baby2006.html.summary:John 20
+baby2008.html.summary:John 20

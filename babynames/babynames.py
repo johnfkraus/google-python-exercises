@@ -59,14 +59,15 @@ def extract_names(filename):
   # print 'contents = ', contents
 
   # find the year
-  match = re.search(r'<h3 align="center">Popularity in (1990)<\/h3>', contents)
+  # match = re.search(r'<h3 align="center">Popularity in (\d{4})<\/h3>', contents)
+  match = re.search(r'<h\d.*>Popularity in (\d{4})<\/h\d>|<b>Popularity in (\d{4})<\/b>', contents)
   if match:                      
     if db: print 'found match.group: ', match.group() 
     if db: print 'found match.group(1): ', match.group(1) 
     name_list.append(match.group(1))
     if db: print 'name_list: ', name_list
   else:
-    print 'did not find year!'
+    print 'did not find year for filename: ', filename
 
   # find names and ranks in html table
   match_list_tuples = re.findall(r'<tr align="right"><td>(\d+)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>' , contents)
@@ -93,7 +94,7 @@ def extract_names(filename):
         if db: print tuple[2], simple_babyname_dict[tuple[2]] 
     # name_list.append(match.group(1))
   else:
-    print 'did not find names and ranks in html table'
+    print 'did not find names and ranks in html table for filename:', filename
 
   if db: print len(simple_babyname_dict)
   for k, v in simple_babyname_dict.items(): 
@@ -129,9 +130,19 @@ def main():
   # or write it to a summary file
   # jk sez: 'text output' is ambiguous; have to go back to the YouTube video to
   # see what they want for 'text output'; 
+  
   for filename in args:
     name_list = extract_names(filename)
-    
-  
+    if summary:
+      out_filename = filename + '.summary'
+      file = open(out_filename, 'w')
+      for item in sorted(name_list):
+        file.write(item + '\n')
+      file.close()
+    else: 
+      # print '142 name_list:', name_list   
+      for item in sorted(name_list):
+        print item
+
 if __name__ == '__main__':
   main()

@@ -1,0 +1,10 @@
+baby1990.html.summary:Nick 671
+baby1992.html.summary:Nick 689
+baby1994.html.summary:Nick 756
+baby1996.html.summary:Nick 837
+baby1998.html.summary:Nick 829
+baby2000.html.summary:Nick 767
+baby2002.html.summary:Nick 831
+baby2004.html.summary:Nick 852
+baby2006.html.summary:Nick 820
+baby2008.html.summary:Nick 888
