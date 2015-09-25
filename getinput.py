@@ -25,7 +25,7 @@ notes: zip -j
 
 def List(dir):
   cmd = 'ls -l ' + dir
-  print '28 about to do this:', cmd
+  print 'about to do this:', cmd
   # return
   (status, output) = commands.getstatusoutput(cmd)
   if status:
@@ -33,55 +33,45 @@ def List(dir):
     print sys.stderr.write('there was an error:' + output)
     sys.exit(1)
   print output
-  return
 
+""" 
+  filenames = os.listdir(dir)
+  for filename in filenames:
+    path = os.path.join(dir, filename) # creates a valid path
+    print path
+    print os.path.abspath(path)
+"""
 def get_input():
-  var = raw_input("39 Enter to continue; n to quit: ").lower()
-  print '40 you entered something like [', var, ']'
+  var = raw_input("Enter to continue; n to quit: ").lower()
+  print 'you entered something like [', var, ']'
   if var == '' or var == 'y' or var == 'Y': 
     return True
   else: 
-    print '44 you entered something like [', var, ']'
+    print 'you entered something like [', var, ']'
     return False
 
-def haz_special(filename):
-  db = True
-  match = re.search(r'__.*__', filename)
-  if match:                      
-    # if db: print 'found match.group: ', match.group() 
-    # if db: print 'found match.group(1): ', match.group(1) 
-    return True
-  else: 
-    return False
-  return
 
 # suggested functions
-# get_special_paths(dir): returns a list of the absolute paths of the special files in the given directory
 def get_special_paths(dir):
-  abs_paths_list = []
-  filenames = os.listdir(dir)
-  for filename in filenames:
-    if haz_special(filename):
-      # print 'haz_special(', filename, '):', haz_special(filename)
-      path = os.path.join(dir, filename) # creates a valid path
-      # print 'path: ',path
-      # print 'os.path.abspath(path): ', os.path.abspath(path) 
-      abs_paths_list.append(os.path.abspath(path))
-  # print '70 get_special_paths(', dir, ') returning abs_paths_list:', abs_paths_list
-  return abs_paths_list
+  # returns a list of the absolute paths of the special files in the given directory
+  cmd = 'ls -l ' + dir
+  print 'about to do this:', cmd
+  gi = get_input()
+  print 'gi: ', gi
+  if not gi: 
+    return
+  (status, output) = commands.getstatusoutput(cmd)
+  if status:
+    # print sys.stderr, 'there was an error:', output
+    print sys.stderr.write('there was an error:' + output)
+    sys.exit(1)
+  print output
+
+
+  return
 
 def copy_to(paths, dir):
   # given a list of paths, copies those files into the given directory
-  # print '75 paths: ', paths, '; dir: ', dir
-  for path in paths:
-    cmd = 'cp ' + path + " " + dir
-    # print 'about to do this:', cmd
-    # if not get_input(): return
-    (status, output) = commands.getstatusoutput(cmd)
-    if status:
-      print sys.stderr.write('83 there was an error:' + output)
-      sys.exit(1)
-    # print '85 output: ', output
   return
 
 def zip_to(paths, zippath): 
@@ -96,7 +86,7 @@ def main():
   # Make a list of command line arguments, omitting the [0] element
   # which is the script itself.
   args = sys.argv[1:]
-  # print 'args: ', args
+  print 'args: ', args
   if not args:
     print "usage: [--todir dir][--tozip zipfile] dir [dir ...]";
     sys.exit(1)
@@ -120,14 +110,13 @@ def main():
 
   # +++your code here+++
   # Call your functions
-  spec_paths_list = []
-  for source_dir in args:
-    spec_paths_list.extend(get_special_paths(source_dir))
-    
-
-  if todir:
-    copy_to(spec_paths_list, todir)
+  for dir in args:
+    get_special_paths(dir)
 
 if __name__ == "__main__":
   main()
+
+
+
+
 
