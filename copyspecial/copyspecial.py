@@ -16,8 +16,7 @@ import commands
 'Copy Special' exercise
 https://developers.google.com/edu/python/exercises/copy-special
 The copyspecial.py program takes one or more directories as its arguments.
-notes: zip -j
-
+note: zip -j
 
 """
 # +++your code here+++
@@ -35,6 +34,7 @@ def List(dir):
   print output
   return
 
+# for debugging
 def get_input():
   var = raw_input("39 Enter to continue; n to quit: ").lower()
   print '40 you entered something like [', var, ']'
@@ -99,34 +99,54 @@ def main():
   args = sys.argv[1:]
   # print 'args: ', args
   if not args:
-    print "usage: [--todir dir][--tozip zipfile] dir [dir ...]";
+    print "usage: [--todir dir][--tozip zipfile] dir [dir ...]"
     sys.exit(1)
+
+
+# If the '--todir dir' option is present at the start of the 
+# command line, do not
+# print anything and instead copy the files to the given directory, creating it if necessary. Use the python module 'shutil' for file copying.
+
 
   # todir and tozip are either set from command line
   # or left as the empty string.
   # The args array is left just containing the dirs.
   todir = ''
   if args[0] == '--todir':
-    todir = args[1]
+    todir = args[1] 
+    # todir now contains the target directory
     del args[0:2]
+    # args[:] now contains only the source directories 
+
 
   tozip = ''
   if args[0] == '--tozip':
     tozip = args[1]
+    # todir now contains the target directory
     del args[0:2]
+    # args[:] now contains only the source directories 
 
   if len(args) == 0:
-    print "error: must specify one or more dirs"
+    print "error: must specify one or more source dirs"
     sys.exit(1)
 
   # +++your code here+++
   # Call your functions
-  spec_paths_list = []
+  spec_paths_list = [] # list of abs paths to all special files 
+
   for source_dir in args:
+    # args[:] is a list of the source directories 
     spec_paths_list.extend(get_special_paths(source_dir))
 
   if todir:
     copy_to(spec_paths_list, todir)
+    # If the "--todir dir" option is present at the start of the 
+    # command line, do not print anything and instead ... 
+  else:
+    for path in spec_paths_list:
+      print path
+
+
 
   if tozip:
     zip_to(paths, zippath)
