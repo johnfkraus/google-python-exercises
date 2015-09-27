@@ -29,7 +29,7 @@ def List(dir):
   print output
   return
 
-# for debugging
+# pause for confirmation; for debugging
 def get_input():
   var = raw_input("39 Enter to continue; n to quit: ").lower()
   print '40 you entered something like [', var, ']'
@@ -38,6 +38,16 @@ def get_input():
   else: 
     print '44 you entered something like [', var, ']'
     return False
+
+# pause for confirmation; for debugging
+def pause_for_confirmation():
+  var = raw_input("44 Enter to continue; n to quit: ").lower()
+  print '45 you entered something like [', var, ']'
+  if var == '' or var == 'y':
+    return True
+  else: 
+    return False
+
 
 def haz_special(filename):
   db = True
@@ -64,11 +74,12 @@ def get_special_paths(dir):
       abs_paths_list.append(os.path.abspath(path))
   # print '70 get_special_paths(', dir, ') returning abs_paths_list:', abs_paths_list
   return abs_paths_list
+
 """
 def commands_copy_to(paths, dir):
   # given a list of (absolute) paths, copies those files into the given directory
   print '75 paths: ', paths, '; dir: ', dir
-  
+
   for path in paths:
     cmd = 'cp ' + path + " " + dir
     # print 'about to do this:', cmd
@@ -99,7 +110,7 @@ def copy_to(paths, dir):
       os.makedirs(target_dirname)
     shutil.copy(path, target_path)
     # cmd = 'cp ' + path + " " + dir
-    
+
     # print 'about to do this:', cmd
     # if not get_input(): return
     # (status, output) = commands.getstatusoutput(cmd)
@@ -110,11 +121,60 @@ def copy_to(paths, dir):
     # print '85 output: ', output
   return
 
+def make_abs_path(path):
 
+  return
 
 def zip_to(paths, zippath): 
   # given a list of paths, zip those files up into the given zipfile
-  print 'need to implement zip_to method'
+  # print 'need to implement zip_to method'
+  print '131 paths: ', paths, '; zippath: ', zippath 
+  # target_path = os.path.join(dir, basename)
+  abs_target_path = os.path.abspath(zippath)
+  print 'abs_target_path:', abs_target_path
+  sys.exit(0)
+  basename = os.path.basename(path)
+  print 'basename:', basename
+  target_path = os.path.join(dir, basename)
+  abs_target_path = os.path.abspath(target_path)
+  target_dirname = os.path.dirname(abs_target_path) 
+  print 'target_dirname:', target_dirname
+  print 'target_path:', target_path
+  if not os.path.exists(target_dirname):
+    print 'target path doex not exist: ', target_dirname
+    os.makedirs(target_dirname)
+  paths = []
+  for path in paths:
+    cmd = 'cp ' + path + " " + dir
+    # print 'about to do this:', cmd
+    # if not get_input(): return
+    (status, output) = commands.getstatusoutput(cmd)
+    if status:
+      print sys.stderr.write('83 there was an error:' + output)
+      sys.exit(1)
+    # print '85 output: ', output
+  abs_target_dir = os.path.abspath(dir)
+  print 'abs_target_dir:', abs_target_dir
+  for path in paths:
+    basename = os.path.basename(path)
+    print 'basename:', basename
+    target_path = os.path.join(dir, basename)
+    abs_target_path = os.path.abspath(target_path)
+    target_dirname = os.path.dirname(abs_target_path) 
+    print 'target_dirname:', target_dirname
+    print 'target_path:', target_path
+    print 'abs_target_path:', abs_target_path
+    if not os.path.exists(target_dirname):
+      print 'target path doex not exist: ', target_dirname
+      os.makedirs(target_dirname)
+    shutil.copy(path, target_path)
+    # cmd = 'cp ' + path + " " + dir
+
+    # print 'about to do this:', cmd
+    # if not get_input(): return
+    # (status, output) = commands.getstatusoutput(cmd)
+
+
   return
 
 
@@ -130,11 +190,9 @@ def main():
     print "usage: [--todir dir][--tozip zipfile] dir [dir ...]"
     sys.exit(1)
 
-
 # If the '--todir dir' option is present at the start of the 
 # command line, do not
 # print anything and instead copy the files to the given directory, creating it if necessary. Use the python module 'shutil' for file copying.
-
 
   # todir and tozip are either set from command line
   # or left as the empty string.
@@ -149,8 +207,8 @@ def main():
 
   tozip = ''
   if args[0] == '--tozip':
-    tozip = args[1]
-    # todir now contains the target directory
+    tozip = args[1] # the zip target
+    # tozip now contains the target directory
     del args[0:2]
     # args[:] now contains only the source directories 
 
@@ -177,7 +235,7 @@ def main():
 
 
   if tozip:
-    zip_to(paths, zippath)
+    zip_to(spec_paths_list, tozip)
 
 if __name__ == "__main__":
   main()
