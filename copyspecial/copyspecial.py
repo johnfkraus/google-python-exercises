@@ -13,7 +13,6 @@ import commands
 https://developers.google.com/edu/python/exercises/copy-special
 The copyspecial.py program takes one or more directories as its arguments.
 note: zip -j
-
 """
 # +++your code here+++
 # Write functions and modify main() to call them
@@ -93,17 +92,17 @@ def copy_to(paths, dir):
     abs_target_path = os.path.abspath(target_path)
     target_dirname = os.path.dirname(abs_target_path) 
     print 'target_dirname:', target_dirname
-    if not os.path.exists(target_dirname):
-      print 'target path doex not exist: ', target_dirname
-
     print 'target_path:', target_path
     print 'abs_target_path:', abs_target_path
+    if not os.path.exists(target_dirname):
+      print 'target path doex not exist: ', target_dirname
+      os.makedirs(target_dirname)
+    shutil.copy(path, target_path)
     # cmd = 'cp ' + path + " " + dir
     
     # print 'about to do this:', cmd
     # if not get_input(): return
     # (status, output) = commands.getstatusoutput(cmd)
-    shutil.copy(path, target_path)
 
     # if status:
       # print sys.stderr.write('83 there was an error:' + output)
