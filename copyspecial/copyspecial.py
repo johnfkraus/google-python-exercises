@@ -1,8 +1,4 @@
 #!/usr/bin/python
-# Copyright 2010 Google Inc.
-# Licensed under the Apache License, Version 2.0
-# http://www.apache.org/licenses/LICENSE-2.0
-
 # Google's Python Class
 # http://code.google.com/edu/languages/google-python-class/
 
@@ -69,10 +65,11 @@ def get_special_paths(dir):
       abs_paths_list.append(os.path.abspath(path))
   # print '70 get_special_paths(', dir, ') returning abs_paths_list:', abs_paths_list
   return abs_paths_list
-
-def copy_to(paths, dir):
-  # given a list of paths, copies those files into the given directory
-  # print '75 paths: ', paths, '; dir: ', dir
+"""
+def commands_copy_to(paths, dir):
+  # given a list of (absolute) paths, copies those files into the given directory
+  print '75 paths: ', paths, '; dir: ', dir
+  
   for path in paths:
     cmd = 'cp ' + path + " " + dir
     # print 'about to do this:', cmd
@@ -83,6 +80,38 @@ def copy_to(paths, dir):
       sys.exit(1)
     # print '85 output: ', output
   return
+"""
+def copy_to(paths, dir):
+  # given a list of paths, copies those files into the given directory
+  print '85 paths: ', paths, '; dir: ', dir
+  abs_target_dir = os.path.abspath(dir)
+  print 'abs_target_dir:', abs_target_dir
+  for path in paths:
+    basename = os.path.basename(path)
+    print 'basename:', basename
+    target_path = os.path.join(dir, basename)
+    abs_target_path = os.path.abspath(target_path)
+    target_dirname = os.path.dirname(abs_target_path) 
+    print 'target_dirname:', target_dirname
+    if not os.path.exists(target_dirname):
+      print 'target path doex not exist: ', target_dirname
+
+    print 'target_path:', target_path
+    print 'abs_target_path:', abs_target_path
+    # cmd = 'cp ' + path + " " + dir
+    
+    # print 'about to do this:', cmd
+    # if not get_input(): return
+    # (status, output) = commands.getstatusoutput(cmd)
+    shutil.copy(path, target_path)
+
+    # if status:
+      # print sys.stderr.write('83 there was an error:' + output)
+      # sys.exit(1)
+    # print '85 output: ', output
+  return
+
+
 
 def zip_to(paths, zippath): 
   # given a list of paths, zip those files up into the given zipfile

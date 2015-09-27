@@ -1,0 +1,34 @@
+total 128
+ 0 drwxr-xr-x 2 codio codio    88 Sep 27 16:53 archives
+ 4 drwxr-xr-x 3 codio codio  4096 Sep 25 18:22 babynames
+ 4 drwxr-xr-x 4 codio codio  4096 Sep 24 21:02 basic
+ 4 -rw-r--r-- 1 codio codio   948 Sep 25 16:55 chkinput.js
+ 0 drwxr-xr-x 3 codio codio   134 Sep 26 16:56 copyspecial
+ 4 -rw-rw-r-- 1 codio codio  1476 Sep 27 17:00 err.txt
+ 4 -rwxr-xr-x 1 codio codio   204 Sep 25 17:12 getbabyfiles.py
+ 4 -rwxrwxr-x 1 codio codio  2854 Sep 25 21:45 getinput.py
+ 4 -rwxr-xr-x 1 codio codio   954 Sep 27 17:03 hello.py
+ 4 -rwxr-xr-x 1 codio codio   240 Apr 28 15:22 ipython_config.py
+ 4 -rwxr-xr-x 1 codio codio  1075 Sep 27 14:51 jk.py
+ 4 -rw-r--r-- 1 codio codio   728 Sep 27 15:27 jk.pyc
+ 4 -rw-rw-r-- 1 codio codio   473 Sep 27 15:44 jktry2.txt
+ 4 -rwxrwxr-x 1 codio codio   839 Sep 27 16:24 jktry.py
+ 4 -rw-rw-r-- 1 codio codio   712 Sep 27 16:19 jktry.pyc
+12 -rw-r--r-- 1 codio codio 11358 Sep 18 16:10 LICENSE.txt
+ 4 -rwxr-xr-x 1 codio codio  1075 Sep 26 16:54 list.py
+ 4 -rw-r--r-- 1 codio codio   733 Sep 27 14:49 list.pyc
+ 0 drwxr-xr-x 3 codio codio    97 Sep 18 16:10 logpuzzle
+ 4 -rw-r--r-- 1 codio codio  1091 Sep 25 16:58 notes.txt
+ 4 -rw-r--r-- 1 codio codio   111 Sep 18 16:10 NOTICE.txt
+ 4 -rwxr-xr-x 1 codio codio    37 Sep 27 14:53 os.py
+ 4 -rwxr-xr-x 1 codio codio    80 Apr 28 15:24 profile-copy.sh
+ 4 -rwxrwxrwx 1 codio codio  1742 Sep 27 16:48 python_editing.vim
+ 4 -rw-r--r-- 1 codio codio    16 Apr 28 15:34 startup.sh
+ 0 -rw-rw-r-- 1 codio codio     0 Sep 27 17:15 test.txt
+ 4 -rw-rw-r-- 1 codio codio   839 Sep 27 17:07 trymod.py
+ 4 -rw-rw-r-- 1 codio codio   726 Sep 27 17:08 trymod.pyc
+ 4 -rw-r--r-- 1 codio codio   450 Sep 27 15:45 trypython.txt
+ 4 -rwxr-xr-x 1 codio codio   499 Sep 25 18:37 util.py
+ 8 -rw-r--r-- 1 codio codio  6202 Sep 18 19:23 _vimrc.txt
+ 4 -rwxrwxr-x 1 codio codio   839 Sep 27 16:52 xjktry.py
+ 4 -rw-rw-r-- 1 codio codio   726 Sep 27 17:13 xjktry.pyc

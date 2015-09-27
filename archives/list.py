@@ -7,17 +7,6 @@ import sys
 import os
 
 def List(dir):
-  filenames = os.listdir(dir)
-  for filename in filenames:
-    local_path = os.path.join(dir, filename)
-    print 'filename = ', filename
-    print 'local_path = ', local_path
-    print 'os.path.abspath(local_path) = ', os.path.abspath(local_path)
-    print
-  return
-
-
-"""
   cmd = 'ls -l ' + dir
   print 'about to do this:', cmd
   # return
@@ -27,7 +16,7 @@ def List(dir):
     print sys.stderr.write('there was an error:' + output)
     sys.exit(1)
   print output
-"""
+
 """ 
   filenames = os.listdir(dir)
   for filename in filenames:
