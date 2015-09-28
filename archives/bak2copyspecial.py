@@ -292,7 +292,7 @@ def main():
     # command line, do not print anything and instead ... 
   else:
     for path in spec_paths_list:
-      print path
+      print lineno(), path
 
 
 
