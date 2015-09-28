@@ -63,10 +63,17 @@ def mimic_dict(filename):
   # print 'len = ', len(contents_list)
   dict[''] = [contents_list[0]]
   i = 0
-  while i < len(contents_list)-1:
+  mylen = (len(contents_list)-1)
+  # print 'len contents list ', mylen
+  next_to_last = range(mylen)[-1] 
+  for i in range(mylen):
+    # while i < len(contents_list)-1:
     if db: print 'line 59', print_dict(dict)
-    word1 = contents_list[i]
+    word1 = contents_list[i] 
     word2 = contents_list[i+1]
+    if db:
+      if i  == next_to_last: # range(mylen)[-1]:
+        print 'next to last word: ', word1, 'last word: ',word2 
     if db: print 'line 60; i = ', i, '/', len(contents_list),'; ', word1,'->', word2
     if word1 in dict:
       if db: print 'line 62; i = ', i, '/', len(contents_list),'; ', word1,'->', word2, '; dict[', word1, '] = ', dict[word1]
@@ -83,7 +90,7 @@ def mimic_dict(filename):
       # word1 is not already in dict; add it
       dict[word1] = [word2]
       if db: print 'line 73; i = ', i, '/', len(contents_list),'; ', word1,'->', word2, '; dict[', word1, '] = ', dict[word1], 'type(dict[word1]) = ', type(dict[word1])
-    i+=1
+    # i+=1
   if db: print dict
   if db: print 'len(dict) = ', len(dict)
   if db: print_dict(dict)
@@ -109,12 +116,13 @@ def print_mimic(mimic_dict, word):
   # print mimic_dict[word] # returns list
   i = 0
   string = ''
-  while i < 200:
+  for i in range(200):
+  # while i < 200:
     list = mimic_dict[word]
     word = pick_random_from_list(list)
     # print word
     string = string + ' ' +  word
-    i+=1
+    # i+=1
   print string
   return
 
