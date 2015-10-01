@@ -24,7 +24,7 @@ https://developers.google.com/edu/python/exercises/copy-special
 The copyspecial.py program takes one or more directories as its arguments.
 note: use zip -j
 """
-# +++your code here+++
+# +++your skanky code here+++
 # Write functions and modify main() to call them
 
 # if db == True, print verbose debugging messages

@@ -18,6 +18,20 @@ Given an apache logfile, find the puzzle urls and download the images.
 Here's what a puzzle url looks like:
 10.254.254.28 - - [06/Aug/2007:00:13:48 -0700] "GET /~foo/puzzle-bar-aaab.jpg HTTP/1.0" 302 528 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
 """
+def make_abs_target_path_exists(zippath):
+  db = False
+  abs_target_path = os.path.abspath(zippath)
+  basename = os.path.basename(abs_target_path)
+  target_dirname = os.path.dirname(abs_target_path) 
+  if not os.path.exists(target_dirname):
+    if db: print lineno(), 'target path did not exist, creating: ', target_dirname
+    os.makedirs(target_dirname)
+  else: 
+    if db: 
+      print lineno(), 'target path exists'
+  abs_target_path_exists = abs_target_path
+  return abs_target_path_exists
+
 
 
 def read_urls(filename):
@@ -30,17 +44,13 @@ def read_urls(filename):
   if db: print 'running read_urls(', filename, ')'
   # print filename
   hostname = filename.split('_')[1]
-
-  # print 'hostname: ',  hostname
-  name_list = []
+  # name_list = []
   logfile = open(filename, 'rU')
   if db: print 'logfile:', logfile
   # logcontents = logfile.read()
   # print 'logcontents = ', logcontents
   url_list = []
   url_dict = {}
-  # f = open('foo.txt', 'rU')
-  
   for line in logfile: ## iterates over the lines of the file
     # print 'line: ', line, 
     ## trailing , so print does not add an end-of-line char
@@ -59,53 +69,12 @@ def read_urls(filename):
       # -- given a url that may or may not be full, and the baseurl of the page it comes from, return a full url. Use geturl() above to provide the base url.
       url_list.append(fullurl) # match.group(1))                           
       url_dict[fullurl] = 1
-
-  
   logfile.close()
   urls = sorted(url_dict.keys())
   # print 'urls ', urls
   for url in urls:
     print url
   return urls
-
-  """
-  match_list_tuples = re.findall(r'<tr align="right"><td>(\d+)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>' , contents)
-  if match_list_tuples:
-    # print 'found', match.group() 
-    # print 'found', match_list
-    if db: print 'len(match_list_tuples):', len(match_list_tuples)
-    if db: print 'found', match_list_tuples
-    for tuple in match_list_tuples:
-      if db: print tuple[0], tuple[1], tuple[2]
-      # insert the list of male names into the dict
-      simple_babyname_dict[tuple[1]] = tuple[0]
-      if db: print tuple[1], tuple[0], tuple[2]
-      if db: print 'tuple: ', tuple
-      # insert the list of female names into the dict
-      if tuple[2] not in simple_babyname_dict:
-        simple_babyname_dict[tuple[2]] = tuple[0]
-        if db: print tuple[2], tuple[0]
-      else:
-        if db: print tuple[2], 'ranks', tuple[0], 'as girl name,', simple_babyname_dict[tuple[2]], 'as boy name'
-        # dict_rank = simple_babyname_dict[tuple[2]]
-        best_rank = min( simple_babyname_dict[tuple[2]], tuple[0])
-        simple_babyname_dict[tuple[2]] = best_rank
-        if db: print tuple[2], simple_babyname_dict[tuple[2]] 
-    # name_list.append(match.group(1))
-  else:
-    print 'did not find names and ranks in html table for filename:', filename
-
-  if db: print len(simple_babyname_dict)
-  for k, v in simple_babyname_dict.items(): 
-    if db: print k, '>', v
-    string = '%s %s' % (k, v)
-    if db: print string 
-    name_list.append(string)    
-
-  if db: print 'name_list:', name_list, 'len:', len(name_list)
-  """
-  return name_list
-
 
 
 
@@ -119,15 +88,19 @@ def download_images(img_urls, dest_dir):
   """
   # +++your code here+++
 
+  for url in img_urls:
+    print 'url:', url
+  dir = make_abs_target_path_exists(dest_dir)
+  print 'dir ', dir
+  return
 
 
 def main():
   args = sys.argv[1:]
-
+  print 'args = ', args
   if not args:
-    print 'usage: [--todir dir] logfile '
+    print 'usage: [--todir dir] logfile'
     sys.exit(1)
-
   todir = ''
   if args[0] == '--todir':
     todir = args[1]
@@ -142,5 +115,11 @@ def main():
 
 if __name__ == '__main__':
   main()
+
+
+
+
+
+
 
 

@@ -1,1 +1,1 @@
-~/workspace/logpuzzle/logpuzzle.py animal_developers.google.com 
+./logpuzzle.py --todir imgs animal_developers.google.com
