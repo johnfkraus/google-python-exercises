@@ -25,16 +25,14 @@ def read_urls(filename):
   extracting the hostname from the filename itself.
   Screens out duplicate urls and returns the urls sorted into
   increasing order."""
-  # +++your lame code here+++
-  db = True # are we printing debugging messages?
+  # +++your lame ass code here+++
+  db = False # are we printing debugging messages?
   if db: print 'running read_urls(', filename, ')'
-  print filename
+  # print filename
   hostname = filename.split('_')[1]
 
-  print 'hostname: ',  hostname
+  # print 'hostname: ',  hostname
   name_list = []
-
-  simple_url_dict = {}
   logfile = open(filename, 'rU')
   if db: print 'logfile:', logfile
   # logcontents = logfile.read()
@@ -44,7 +42,7 @@ def read_urls(filename):
   # f = open('foo.txt', 'rU')
   
   for line in logfile: ## iterates over the lines of the file
-    print 'line: ', line, 
+    # print 'line: ', line, 
     ## trailing , so print does not add an end-of-line char
     ## since 'line' already includes the end-of line.
     match = re.search(r'(\S*jpg)', line)                                                               
@@ -53,23 +51,23 @@ def read_urls(filename):
       # if db: print 'found match.group: ', match.group()                                                                                                             
       # if db: print 'found match.group(1): ', match.group(1)                                                                                                         
       url = match.group(1)                                                                                                         
-      print 'url: ', url
-      print 'baseurl:', baseurl 
-      fullurl = urlparse.urljoin(baseurl, url) 
-      print 'fullurl: ', fullurl
+      # print 'url: ', url
+      # print 'baseurl:', baseurl 
+      # not working: ????? fullurl = urlparse.urljoin(baseurl, url) 
+      fullurl = 'http://' + baseurl + url
+      # print 'fullurl: ', fullurl
       # -- given a url that may or may not be full, and the baseurl of the page it comes from, return a full url. Use geturl() above to provide the base url.
       url_list.append(fullurl) # match.group(1))                           
       url_dict[fullurl] = 1
 
   
   logfile.close()
-  urls = url_dict.keys()
-  print 'urls ', sorted(urls)
+  urls = sorted(url_dict.keys())
+  # print 'urls ', urls
+  for url in urls:
+    print url
+  return urls
 
-
-  # print url_list
-
-  sys.exit(1) 
   """
   match_list_tuples = re.findall(r'<tr align="right"><td>(\d+)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>' , contents)
   if match_list_tuples:
