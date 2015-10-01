@@ -10,6 +10,7 @@ import os
 import re
 import sys
 import urllib
+import urlparse
 
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
@@ -24,8 +25,91 @@ def read_urls(filename):
   extracting the hostname from the filename itself.
   Screens out duplicate urls and returns the urls sorted into
   increasing order."""
-  # +++your code here+++
+  # +++your lame code here+++
+  db = True # are we printing debugging messages?
+  if db: print 'running read_urls(', filename, ')'
+  print filename
+  hostname = filename.split('_')[1]
+
+  print 'hostname: ',  hostname
+  name_list = []
+
+  simple_url_dict = {}
+  logfile = open(filename, 'rU')
+  if db: print 'logfile:', logfile
+  # logcontents = logfile.read()
+  # print 'logcontents = ', logcontents
+  url_list = []
+  url_dict = {}
+  # f = open('foo.txt', 'rU')
   
+  for line in logfile: ## iterates over the lines of the file
+    print 'line: ', line, 
+    ## trailing , so print does not add an end-of-line char
+    ## since 'line' already includes the end-of line.
+    match = re.search(r'(\S*jpg)', line)                                                               
+    baseurl = hostname
+    if match:                                                                                                                                                       
+      # if db: print 'found match.group: ', match.group()                                                                                                             
+      # if db: print 'found match.group(1): ', match.group(1)                                                                                                         
+      url = match.group(1)                                                                                                         
+      print 'url: ', url
+      print 'baseurl:', baseurl 
+      fullurl = urlparse.urljoin(baseurl, url) 
+      print 'fullurl: ', fullurl
+      # -- given a url that may or may not be full, and the baseurl of the page it comes from, return a full url. Use geturl() above to provide the base url.
+      url_list.append(fullurl) # match.group(1))                           
+      url_dict[fullurl] = 1
+
+  
+  logfile.close()
+  urls = url_dict.keys()
+  print 'urls ', sorted(urls)
+
+
+  # print url_list
+
+  sys.exit(1) 
+  """
+  match_list_tuples = re.findall(r'<tr align="right"><td>(\d+)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>' , contents)
+  if match_list_tuples:
+    # print 'found', match.group() 
+    # print 'found', match_list
+    if db: print 'len(match_list_tuples):', len(match_list_tuples)
+    if db: print 'found', match_list_tuples
+    for tuple in match_list_tuples:
+      if db: print tuple[0], tuple[1], tuple[2]
+      # insert the list of male names into the dict
+      simple_babyname_dict[tuple[1]] = tuple[0]
+      if db: print tuple[1], tuple[0], tuple[2]
+      if db: print 'tuple: ', tuple
+      # insert the list of female names into the dict
+      if tuple[2] not in simple_babyname_dict:
+        simple_babyname_dict[tuple[2]] = tuple[0]
+        if db: print tuple[2], tuple[0]
+      else:
+        if db: print tuple[2], 'ranks', tuple[0], 'as girl name,', simple_babyname_dict[tuple[2]], 'as boy name'
+        # dict_rank = simple_babyname_dict[tuple[2]]
+        best_rank = min( simple_babyname_dict[tuple[2]], tuple[0])
+        simple_babyname_dict[tuple[2]] = best_rank
+        if db: print tuple[2], simple_babyname_dict[tuple[2]] 
+    # name_list.append(match.group(1))
+  else:
+    print 'did not find names and ranks in html table for filename:', filename
+
+  if db: print len(simple_babyname_dict)
+  for k, v in simple_babyname_dict.items(): 
+    if db: print k, '>', v
+    string = '%s %s' % (k, v)
+    if db: print string 
+    name_list.append(string)    
+
+  if db: print 'name_list:', name_list, 'len:', len(name_list)
+  """
+  return name_list
+
+
+
 
 def download_images(img_urls, dest_dir):
   """Given the urls already in the correct order, downloads
@@ -36,7 +120,8 @@ def download_images(img_urls, dest_dir):
   Creates the directory if necessary.
   """
   # +++your code here+++
-  
+
+
 
 def main():
   args = sys.argv[1:]
@@ -59,4 +144,5 @@ def main():
 
 if __name__ == '__main__':
   main()
+
 

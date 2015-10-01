@@ -42,11 +42,11 @@ def extract_names(filename):
   """
   name_list = []
   """
-  apparently the baby name dict is envisioned, for simplicity, 
-  as gender-agnostic; from the video on YouTube: if a name is both 
+  Apparently the baby name dict is envisioned, for simplicity, 
+  as gender-agnostic.  From the video on YouTube: if a name is both 
   male and female, it goes in the dictionary once with the popularity 
-  rank integer representing the highest popularity; i.e., use the 
-  lowest integer; 
+  rank integer representing the greatest popularity (i.e., use the 
+  lowest integer). 
   """
   db = False # are we printing debugging messages?
   if db: print 'running extract_names'

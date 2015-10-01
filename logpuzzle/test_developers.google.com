@@ -1,0 +1,5 @@
+10.254.254.28 - - [06/Aug/2007:00:12:20 -0700] "GET /keyser/22300/ HTTP/1.0" 302 528 "-" "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.4) Gecko/20070515 Firefox/2.0.0.4"
+10.254.254.58 - - [06/Aug/2007:00:10:05 -0700] "GET /edu/languages/google-python-class/images/puzzle/a-baaa.jpg HTTP/1.0" 200 2309 "-" "googlebot-mscrawl-moma (enterprise; bar-XYZ; foo123@google.com,foo123@google.com,foo123@google.com,foo123@google.com)"
+10.254.254.28 - - [06/Aug/2007:00:11:08 -0700] "GET /favicon.ico HTTP/1.0" 302 3404 "-" "googlebot-mscrawl-moma (enterprise; bar-XYZ; foo123@google.com,foo123@google.com,foo123@google.com,foo123@google.com)"
+10.254.254.29 - - [06/Aug/2007:00:13:48 -0700] "GET /edu/languages/google-python-class/images/puzzle/a-baag.jpg HTTP/1.0" 302 3404 "-" "googlebot-mscrawl-moma (enterprise; bar-XYZ; foo123@google.com)"
+10.1.40.113 - - [06/Aug/2007:00:11:14 -0700] "GET /keyser/24708/ HTTP/1.0" 200 5694 "-" "googlebot-mscrawl-moma (enterprise; bar-XYZ; foo123@google.com,foo123@google.com,foo123@google.com,foo123@google.com)"
