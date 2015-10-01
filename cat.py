@@ -17,33 +17,25 @@ import sys
 
 def Cat(filename):
   f = open(filename)
-  test = f.read()
+  text = f.read()
   print '---', filename
   print text
   return
 
 
-
-def Hello(name):
-  name = name + '!!!!!'
-  print 'Hello', name
-
-
 # Define a main() function that prints a little greeting.
 def main():
+  # Make a list of command line arguments, omitting the [0] element
+  # which is the script itself.
   args = sys.argv[1:]
+  if not args:
+    print "usage: filename [filename ...]"
+    sys.exit(1)
+
   for arg in args:
     Cat(arg)
-  #   print sys.argv
-  Hello(sys.argv[1])
-
-  # Get the name from the command line, using 'World' as a fallback.
-  if len(sys.argv) >= 2:
-    name = sys.argv[1]
-  else:
-    name = 'World'
-  print 'Howdy', name
 
 # This is the standard boilerplate that calls the main() function.
 if __name__ == '__main__':
   main()
+
