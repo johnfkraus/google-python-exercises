@@ -11,6 +11,7 @@ import re
 import sys
 import urllib
 import urlparse
+import inspect
 
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
@@ -18,21 +19,34 @@ Given an apache logfile, find the puzzle urls and download the images.
 Here's what a puzzle url looks like:
 10.254.254.28 - - [06/Aug/2007:00:13:48 -0700] "GET /~foo/puzzle-bar-aaab.jpg HTTP/1.0" 302 528 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
 """
-def make_abs_target_path_exists(zippath):
-  db = False
-  abs_target_path = os.path.abspath(zippath)
-  basename = os.path.basename(abs_target_path)
-  target_dirname = os.path.dirname(abs_target_path) 
-  if not os.path.exists(target_dirname):
-    if db: print lineno(), 'target path did not exist, creating: ', target_dirname
-    os.makedirs(target_dirname)
+
+def lineno():
+  """
+  Returns the current line number in our program.
+  lineno() is a function to make it easy to grab the line
+  number that we're on. Danny Yoo (dyoo@hkn.eecs.berkeley.edu)
+  """
+  return inspect.currentframe().f_back.f_lineno
+
+
+def make_abs_target_basename_exists(todir):
+  db = True
+  print 'todir: ', todir
+  abs_target_basename = os.path.abspath(todir)
+  print lineno(), 'abs_target_basename: ', abs_target_basename
+  # basename = os.path.basename(abs_target_path)
+  print lineno(), 'abs_target_basename: ', abs_target_basename
+  
+  # target_dirname = os.path.dirname(abs_target_basename) 
+  # print 'target_dirname = ', target_dirname
+  if not os.path.exists(abs_target_basename):
+    if db: print lineno(), 'target path did not exist, creating: ', abs_target_basename
+    os.makedirs(abs_target_basename)
   else: 
     if db: 
-      print lineno(), 'target path exists'
-  abs_target_path_exists = abs_target_path
-  return abs_target_path_exists
-
-
+      print lineno(), 'target path exists:', abs_target_basename
+  # abs_target_basename_exists = abs_target_basename
+  return abs_target_basename
 
 def read_urls(filename):
   """Returns a list of the puzzle urls from the given log file,
@@ -87,12 +101,14 @@ def download_images(img_urls, dest_dir):
   Creates the directory if necessary.
   """
   # +++your code here+++
-
+  print 'dest_dir:', dest_dir
+  abs_target_dir_exists = make_abs_target_basename_exists(dest_dir)
+  print 'abs_target_dir_exists:  ', abs_target_dir_exists
   for url in img_urls:
     print 'url:', url
-  dir = make_abs_target_path_exists(dest_dir)
-  print 'dir ', dir
+  # need to make a path out of dest_dir!
   return
+
 
 
 def main():
@@ -104,6 +120,8 @@ def main():
   todir = ''
   if args[0] == '--todir':
     todir = args[1]
+    print 'todir = ', todir
+    print 'os.path.dirname(todir):', os.path.dirname(todir)
     del args[0:2]
 
   img_urls = read_urls(args[0])
