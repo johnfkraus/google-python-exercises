@@ -1,32 +1,34 @@
 #!/usr/bin/python -tt
 # Google's Python Class
 # http://code.google.com/edu/languages/google-python-class/
-
-"""A tiny Python program to check that Python is working.
-Try running this program from the command line like this:
-  python hello.py
-  python hello.py Alice
-That should print:
-  Hello World -or- Hello Alice
-Try changing the 'Hello' to 'Howdy' and run again.
-Once you have that working, you're ready for class -- you can edit
-and run Python code; now you just need to learn Python!
+"""
+Cat() function with try / except
+from day 2 part 3 lecture of Google's Python Class
 """
 
 import sys
 
 def Cat(filename):
-  f = open(filename)
-  text = f.read()
-  print '---', filename
-  print text
+  """
+  Print a text file to standard output.
+  """
+  try:
+    f = open(filename)
+    text = f.read()
+    print '---', filename
+    print text
+  except IOError:
+    HandleError()
+    print 'IO Error', filename
   return
-
 
 # Define a main() function that prints a little greeting.
 def main():
-  # Make a list of command line arguments, omitting the [0] element
-  # which is the script itself.
+  """
+  Define a main() function that runs the Cat function.
+  """
+  # Make a list of command line arguments, omitting the [0] element.
+  # The omitted sys.argv[0] element is the script itself.
   args = sys.argv[1:]
   if not args:
     print "usage: filename [filename ...]"
@@ -35,7 +37,7 @@ def main():
   for arg in args:
     Cat(arg)
 
-# This is the standard boilerplate that calls the main() function.
+# The following two lines are the standard boilerplate that calls the main() function.
 if __name__ == '__main__':
   main()
 
