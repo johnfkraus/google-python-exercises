@@ -13,14 +13,8 @@ import urllib
 import urlparse
 import inspect
 
-
-
 import shutil
 import commands
-import time
-
-
-
 
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
@@ -30,20 +24,20 @@ Here's what a puzzle url looks like:
 """
 db = False
 
-def make_html(img_dir):
-  print lineno(), 'img_dir:', img_dir
+def make_html(img_urls, img_dir):
+  print lineno(), 'img_urls:', img_urls
 
-  abs_paths_list = []
-  filenames = os.listdir(img_dir)
-  print lineno(),  'filenames = ', filenames
+  # abs_paths_list = []
+  # filenames = os.listdir(img_dir)
+  # print lineno(),  'filenames = ', filenames
   html = '<verbatim><html><head></head><body>'
 
-  for filename in filenames:
-    html = html + '<img src=\"' + img_dir + '/' + filename + '\">'
+  for img_url in img_urls:
+    html = html + '<img src=\"' + img_url + '\">'
 
   html = html + '</body></html>'
   print 'html = ', html
-  f = open(img_dir + '/images.html', 'w')
+  f = open('images.html', 'w')
   f.write(html)
   f.close()
 
@@ -57,7 +51,7 @@ def make_html(img_dir):
       abs_paths_list.append(os.path.abspath(path))
   # print lineno(), '70 get_special_paths(', dir, ') returning abs_paths_list:', abs_paths_list
   """
-  return abs_paths_list
+  return 
 
 
 def lineno():
@@ -136,7 +130,6 @@ def download_images(img_urls, dest_dir):
   # +++your skanky code here+++
   # print 'dest_dir:', dest_dir
   abs_target_dir_exists = make_abs_target_basename_exists(dest_dir)
-  # print 'abs_target_dir_exists:  ', abs_target_dir_exists
   # i is index for image file numbering
   i = 0
   for url in img_urls:
@@ -154,7 +147,12 @@ def download_images(img_urls, dest_dir):
       # print 'img_file_extension: ', img_file_extension
     dest_filename = abs_target_dir_exists + '/' + filename + img_file_extension
     # print 'dest_filename = ', dest_filename
-    urllib.urlretrieve(url, dest_filename) # -- downloads the url data to the given file path need to make a path out of dest_dir!
+    ufile = urllib.urlopen(url)
+    info = ufile.info() # -- the meta info for that request. info.gettype() is the
+    print 'info: ', info 
+    # val = urllib.urlretrieve(ufile, dest_filename) 
+    # -- downloads the url data to the given file path need to make a path out of dest_dir!  mime time, e.g.  'text/html
+    print 'val: ', val
   return
 
 
@@ -179,7 +177,7 @@ def main():
   if todir:
     if db: print lineno(), 'todir = ', todir
     download_images(img_urls, todir)
-    make_html(todir) 
+    make_html(img_urls, todir) 
   else: # user entered only one param: logfile
     print
     print '\n'.join(img_urls)
