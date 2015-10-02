@@ -43,7 +43,7 @@ def make_html(img_dir):
 
   html = html + '</body></html>'
   print 'html = ', html
-  f = open('images.html', 'w')
+  f = open(img_dir + '/images.html', 'w')
   f.write(html)
   f.close()
 
