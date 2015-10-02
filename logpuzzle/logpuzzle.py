@@ -13,12 +13,52 @@ import urllib
 import urlparse
 import inspect
 
+
+
+import shutil
+import commands
+import time
+
+
+
+
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
 
 Here's what a puzzle url looks like:
 10.254.254.28 - - [06/Aug/2007:00:13:48 -0700] "GET /~foo/puzzle-bar-aaab.jpg HTTP/1.0" 302 528 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
 """
+db = False
+
+def make_html(img_dir):
+  print lineno(), 'img_dir:', img_dir
+
+  abs_paths_list = []
+  filenames = os.listdir(img_dir)
+  print lineno(),  'filenames = ', filenames
+  html = '<verbatim><html><head></head><body>'
+
+  for filename in filenames:
+    html = html + '<img src=\"' + img_dir + '/' + filename + '\">'
+
+  html = html + '</body></html>'
+  print 'html = ', html
+  f = open('images.html', 'w')
+  f.write(html)
+  f.close()
+
+  """
+  for filename in filenames:
+    if haz_special(filename):
+      # print lineno(), 'haz_special(', filename, '):', haz_special(filename)
+      path = os.path.join(dir, filename) # creates a valid path
+      # print lineno(), 'path: ',path
+      # print lineno(), 'os.path.abspath(path): ', os.path.abspath(path) 
+      abs_paths_list.append(os.path.abspath(path))
+  # print lineno(), '70 get_special_paths(', dir, ') returning abs_paths_list:', abs_paths_list
+  """
+  return abs_paths_list
+
 
 def lineno():
   """
@@ -28,16 +68,12 @@ def lineno():
   """
   return inspect.currentframe().f_back.f_lineno
 
-
 def make_abs_target_basename_exists(todir):
-  db = True
-  print 'todir: ', todir
+  db = False
+  if db: print 'todir: ', todir
   abs_target_basename = os.path.abspath(todir)
-  print lineno(), 'abs_target_basename: ', abs_target_basename
-  # basename = os.path.basename(abs_target_path)
-  print lineno(), 'abs_target_basename: ', abs_target_basename
-  
-  # target_dirname = os.path.dirname(abs_target_basename) 
+  if db: print lineno(), 'abs_target_basename: ', abs_target_basename
+  if db: print lineno(), 'abs_target_basename: ', abs_target_basename
   # print 'target_dirname = ', target_dirname
   if not os.path.exists(abs_target_basename):
     if db: print lineno(), 'target path did not exist, creating: ', abs_target_basename
@@ -56,12 +92,9 @@ def read_urls(filename):
   # +++your lame ass code here+++
   db = False # are we printing debugging messages?
   if db: print 'running read_urls(', filename, ')'
-  # print filename
   hostname = filename.split('_')[1]
-  # name_list = []
   logfile = open(filename, 'rU')
   if db: print 'logfile:', logfile
-  # logcontents = logfile.read()
   # print 'logcontents = ', logcontents
   url_list = []
   url_dict = {}
@@ -86,8 +119,8 @@ def read_urls(filename):
   logfile.close()
   urls = sorted(url_dict.keys())
   # print 'urls ', urls
-  for url in urls:
-    print url
+  # for url in urls:
+  #   print url
   return urls
 
 
@@ -100,44 +133,58 @@ def download_images(img_urls, dest_dir):
   with an img tag to show each local image file.
   Creates the directory if necessary.
   """
-  # +++your code here+++
-  print 'dest_dir:', dest_dir
+  # +++your skanky code here+++
+  # print 'dest_dir:', dest_dir
   abs_target_dir_exists = make_abs_target_basename_exists(dest_dir)
-  print 'abs_target_dir_exists:  ', abs_target_dir_exists
+  # print 'abs_target_dir_exists:  ', abs_target_dir_exists
+  # i is index for image file numbering
+  i = 0
   for url in img_urls:
-    print 'url:', url
-  # need to make a path out of dest_dir!
+    i+=1 
+    # make number into string with leading zeros
+    string_num = str(i).zfill(3) 
+    filename = 'animal' + '_' + string_num
+    # print lineno(), 'filename:', filename
+    match = re.search(r'(\.jpg)\s*$', url)
+    img_file_extension = '.img'
+    if match:                                                                                                                                                       
+      if db: print 'found match.group: ', match.group()                                                                                                             
+      # print 'found match.group(1): ', match.group(1)                                                                                                         
+      img_file_extension = match.group(1)                                                                                                         
+      # print 'img_file_extension: ', img_file_extension
+    dest_filename = abs_target_dir_exists + '/' + filename + img_file_extension
+    # print 'dest_filename = ', dest_filename
+    urllib.urlretrieve(url, dest_filename) # -- downloads the url data to the given file path need to make a path out of dest_dir!
   return
 
 
-
 def main():
+  db = False
   args = sys.argv[1:]
-  print 'args = ', args
+  # print 'args = ', args
   if not args:
     print 'usage: [--todir dir] logfile'
     sys.exit(1)
   todir = ''
   if args[0] == '--todir':
     todir = args[1]
-    print 'todir = ', todir
-    print 'os.path.dirname(todir):', os.path.dirname(todir)
+    # print 'todir = ', todir
+    # print 'os.path.dirname(todir):', os.path.dirname(todir)
     del args[0:2]
+    if db: print lineno(), 'args = ', args 
 
   img_urls = read_urls(args[0])
+  if db: print lineno(), 'img_urls = ', img_urls
 
   if todir:
+    if db: print lineno(), 'todir = ', todir
     download_images(img_urls, todir)
-  else:
+    make_html(todir) 
+  else: # user entered only one param: logfile
+    print
     print '\n'.join(img_urls)
 
 if __name__ == '__main__':
   main()
-
-
-
-
-
-
 
 

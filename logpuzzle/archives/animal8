@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page not found</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
+  <style>
+    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 22px;overflow:hidden}ins{color:#777;text-decoration:none}a img{border:0}@media screen and (max-width:772px){body{background:none;margin-top:0;max-width:none;padding-right:0}}
+  </style>
+  </head>
+  <body>
+    <a href="//developers.google.com/">
+      <img src=//www.google.com/images/logos/errorpage/error_logo-150x54.png alt=Google>
+    </a>
+    <p><b>404.</b> <ins>That's an error.</ins></p>
+    <p>The requested URL was not found on this server. <ins>That's all we know.</ins></p>
+    
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-24532603-5', 'developers.google.com');
+      ga('send', 'pageview');
+    </script>
+    
+  </body>
+</html>
