@@ -5,7 +5,7 @@
 
 # Google's Python Class
 # http://code.google.com/edu/languages/google-python-class/
-
+# images are found here: https://developers.google.com/edu/python/images/puzzle/a-baab.jpg
 import os
 import re
 import sys
@@ -15,9 +15,9 @@ import inspect
 
 import shutil
 import commands
-# from BeautifulSoup import BeautifulSoup as bs
-import BeautifulSoup as bs
-# import beautifulsoup
+
+# TODO: pretty print html file
+# import BeautifulSoup as bs
 
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
@@ -29,7 +29,6 @@ db = False
 
 def make_html(img_urls, img_dir):
   print lineno(), 'img_urls:', img_urls
-
   # abs_paths_list = []
   # filenames = os.listdir(img_dir)
   # print lineno(),  'filenames = ', filenames
@@ -41,25 +40,12 @@ def make_html(img_urls, img_dir):
   html = html + '</body></html>'
   root = html
   #  root=lh.tostring(sliderRoot) #convert the generated HTML to a string
-  soup=bs(root)                #make BeautifulSoup
-  prettyHTML=soup.prettify()   #prettify the html
+  # soup=bs(root)                #make BeautifulSoup
+  # prettyHTML=soup.prettify()   #prettify the html
   print 'html = ', html
-  f = open('images.html', 'w')
+  f = open('image_view.html', 'w')
   f.write(html)
   f.close()
-
-
-
-  """
-  for filename in filenames:
-    if haz_special(filename):
-      # print lineno(), 'haz_special(', filename, '):', haz_special(filename)
-      path = os.path.join(dir, filename) # creates a valid path
-      # print lineno(), 'path: ',path
-      # print lineno(), 'os.path.abspath(path): ', os.path.abspath(path) 
-      abs_paths_list.append(os.path.abspath(path))
-  # print lineno(), '70 get_special_paths(', dir, ') returning abs_paths_list:', abs_paths_list
-  """
   return 
 
 
@@ -107,20 +93,31 @@ def read_urls(filename):
     ## since 'line' already includes the end-of line.
     match = re.search(r'(\S*jpg)', line)                                                               
     baseurl = hostname
+    db = True
     if match:                                                                                                                                                       
+      url = match.group(1)                                                                                                        
       # if db: print 'found match.group: ', match.group()                                                                                                             
-      # if db: print 'found match.group(1): ', match.group(1)                                                                                                         
-      url = match.group(1)                                                                                                         
-      # print 'url: ', url
-      # print 'baseurl:', baseurl 
-      # not working: ????? fullurl = urlparse.urljoin(baseurl, url) 
-      fullurl = 'http://' + baseurl + url
-      # print 'fullurl: ', fullurl
+      if db: print lineno(),  'found match.group(1): ', match.group(1), ' url = ', url                                                                                                         
+      url_pieces = url.split('/')
+      print 'url_pieces = ', url_pieces
+      image_filename = url_pieces[-1]
+      # currently the images are found here:
+      # https://developers.google.com/edu/python/images/puzzle/a-baab.jpg
+      # regardless of what is in the logs file we are supposed to parse
+      fullurl = 'http://' + hostname + '/edu/python/images/puzzle/' + image_filename 
+      print 'fullurl: ', fullurl
       # -- given a url that may or may not be full, and the baseurl of the page it comes from, return a full url. Use geturl() above to provide the base url.
       url_list.append(fullurl) # match.group(1))                           
       url_dict[fullurl] = 1
+      print
   logfile.close()
   urls = sorted(url_dict.keys())
+  f = open('image_url_list.txt', 'w')
+  # f = open('images.html', 'w')
+  for url in urls:
+    print>>f, url
+  # f.write()
+  f.close()
   # print 'urls ', urls
   # for url in urls:
   #   print url
@@ -130,7 +127,6 @@ def read_urls(filename):
 
 
 def download_images(img_urls, dest_dir):
-  db = True
   """Given the urls already in the correct order, downloads
   each image into the given directory.
   Gives the images local filenames img0, img1, and so on.
@@ -139,37 +135,50 @@ def download_images(img_urls, dest_dir):
   with an img tag to show each local image file.
   Creates the directory if necessary.
   """
+  db = True
   # +++your skanky code here+++
-  # print 'dest_dir:', dest_dir
+  print lineno(), 'dest_dir:', dest_dir
   abs_target_dir_exists = make_abs_target_basename_exists(dest_dir)
+  abs_dest_filename_list = []
+  local_dest_filename_list = []
+  print 'Retrieving...'
   # i is index for image file numbering
   i = 0
-  print 'Retrieving...'
   for url in img_urls:
-    print lineno(), 'url: ', url
     i+=1 
-    # make integer for appending to 'img' filename into string with leading zeros
+    if i> 3: db = False
+    print lineno(), 'url: ', url
+    # format as string the integer for appending to 'img' filename; provide
+    # leading zero for sorting
     string_num = str(i).zfill(2) 
-    filename = 'img' + string_num
-    print lineno(), 'filename:', filename,
-    match = re.search(r'(\.jpg)\s*$', url)
+    # default image filename extension is 'img'
     img_file_extension = '.img'
+    match = re.search(r'(\.jpg)\s*$', url)
     if match:                                                                                                                                                       
-      if db: print lineno(),  'found match.group: ', match.group()                                                                                                             
-      if db: print lineno(),  'found match.group(1): ', match.group(1)                                                                                                         
       img_file_extension = match.group(1)                                                                                                         
-      # print 'img_file_extension: ', img_file_extension
-    print lineno()
-    dest_filename = abs_target_dir_exists + '/' + filename + img_file_extension
-    if db: print lineno(), 'dest_filename = ', dest_filename
+    dest_filename = 'img' + string_num + img_file_extension
+    abs_dest_filename = abs_target_dir_exists + '/' + dest_filename
+    local_dest_filename = dest_dir + '/' + dest_filename
+    abs_dest_filename_list.append(abs_dest_filename)
+    local_dest_filename_list.append(local_dest_filename)
+    print lineno(), 'abs_dest_filename_list = ', abs_dest_filename_list
+    print lineno(), 'local_dest_filename_list = ', local_dest_filename_list
+    # ufile is a file-like object
     ufile = urllib.urlopen(url)
     info = ufile.info() # -- the meta info for that request. info.gettype() is the
     file_type = info.gettype() # -- the meta info for that request. info.gettype() is the
+    print lineno(), 'file_type = ', file_type
     # print 'info: ', info 
     print lineno(),  'file_type: ', file_type
-    # val = urllib.urlretrieve(ufile, dest_filename) 
+    val = urllib.urlretrieve(url, local_dest_filename) 
     # -- downloads the url data to the given file path need to make a path out of dest_dir!  mime time, e.g.  'text/html
     # print 'val: ', val
+  f = open('abs_dest_list.txt', 'w')
+  print>>f, abs_dest_filename_list
+  f.close()
+  f = open('local_dest_list.txt', 'w')
+  print>>f, local_dest_filename_list
+  f.close()
   return
 
 
