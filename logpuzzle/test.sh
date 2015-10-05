@@ -13,7 +13,7 @@ fi
 
 # test with a single param: logfile
 
-./logpuzzle.py animal_developers.google.com
+# ./logpuzzle.py place_developers.google.com
 
 echo
 

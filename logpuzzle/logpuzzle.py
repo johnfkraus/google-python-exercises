@@ -29,14 +29,14 @@ db = False
 """
 Create an html file that displays the retrieved images
 """
-def make_html(local_img_urls_list):
+def make_html(local_img_urls_list, todir):
   db = False
   if db: print lineno(), 'local_img_urls_list:', local_img_urls_list
   html = '<html><head><title>John\'s Google Pythone logpuzzle exercise solution</title></head><body>'
   for img_url in local_img_urls_list:
     html = html + '<img src=\"' + img_url + '\">'
   html = html + '</body></html>'
-# TODO: pretty print html file
+  # TODO: pretty print html file
   # root = html
   # root=lh.tostring(sliderRoot) #convert the generated HTML to a string
   # soup=bs(root)                #make BeautifulSoup
@@ -46,6 +46,26 @@ def make_html(local_img_urls_list):
   f.write(html)
   f.close()
   return 
+
+def make_place_html(sorted_orig_fname_paths, todir):
+  db = True
+  if db: print lineno(), 'sorted_orig_fname_paths:', sorted_orig_fname_paths[:800]
+  html = '<html><head><title>John\'s Google Python ' + puzzle_name + ' logpuzzle exercise solution</title></head><body>'
+  for img_url in sorted_orig_fname_paths:
+    html = html + '<img src=\"' + img_url + '\">'
+  html = html + '</body></html>'
+  # TODO: pretty print html file
+  # root = html
+  # root=lh.tostring(sliderRoot) #convert the generated HTML to a string
+  # soup=bs(root)                #make BeautifulSoup
+  # prettyHTML=soup.prettify()   #prettify the html
+  # print lineno(),  'html = ', html
+  f = open(puzzle_name + ' image_view.html', 'w')
+  f.write(html)
+  f.close()
+  print lineno(), 'html = ', html[:900]
+  return 
+
 
 
 def lineno():
@@ -80,9 +100,11 @@ def read_urls(filename):
   # +++your lame ass code here+++
   db = False # are we printing debugging messages?
   if db: print 'running read_urls(', filename, ')'
+  puzzle_name = filename.split('_')[0]
   hostname = filename.split('_')[1]
   logfile = open(filename, 'rU')
   if db: print 'logfile:', logfile
+  orig_fname_list = []
   url_list = []
   url_dict = {}
   for line in logfile: ## iterates over the lines of the file
@@ -97,6 +119,7 @@ def read_urls(filename):
       url_pieces = url.split('/')
       if db: print 'url_pieces = ', url_pieces
       image_filename = url_pieces[-1]
+      orig_fname_list.append(image_filename)
       # currently the images are found here:
       # https://developers.google.com/edu/python/images/puzzle/a-baab.jpg
       # regardless of the urls in the logs file we are supposed to parse
@@ -106,11 +129,25 @@ def read_urls(filename):
       url_dict[fullurl] = 1
   logfile.close()
   urls = sorted(url_dict.keys())
-  # save results for debugging or tinkering
-  f = open('image_url_list.txt', 'w')
+  # save results as list for debugging or tinkering
+  f = open(puzzle_name + '_orig_fname_list.txt', 'w')
+  print>>f, orig_fname_list
+  f.close()
+ 
+  f = open(puzzle_name + '_urls_list.txt', 'w')
+  print>>f, urls
+  f.close()
+ 
+  f = open(puzzle_name + '_image_url_list.txt', 'w')
+  print>>f, urls
+  f.close()
+ 
+  # save results as text for debugging or tinkering
+  f = open(puzzle_name + '_image_url_text.txt', 'w')
   for url in urls:
     print>>f, url
   f.close()
+  if db: print lineno(), 'urls = ', urls
   return urls
 
 def download_images(img_urls, dest_dir):
@@ -126,18 +163,26 @@ def download_images(img_urls, dest_dir):
   # +++your skanky code here+++
   if db: print lineno(), 'dest_dir:', dest_dir
   abs_target_dir_exists = make_abs_target_basename_exists(dest_dir)
+  backup_abs_target_dir_exists = make_abs_target_basename_exists('images_orig_name')
   abs_dest_filename_list = []
   local_dest_filename_list = []
+  backup_files_location_list = []
+  orig_fname_dict = {}
+  backup_dest_filename_list = []
+  orig_fname_dest_dict = {}
   print 'Retrieving...'
   # i is index for image file numbering
   i = 0
   for url in img_urls:
     i+=1 
-    if i> 3: db = False
-    if db: print lineno(), 'url: ', url
+    print lineno(), 'i = ', + i
+    # if i> 3: db = False
+    original_filename = url.split('/')[-1]
+    if db: print lineno(), 'original_filename', original_filename,  'url: ', url
+    # sys.exit(1)
     # format as string the integer for appending to 'img' filename; provide
     # leading zero for sorting
-    string_num = str(i).zfill(2) 
+    string_num = str(i).zfill(3) 
     # default image filename extension is 'img' in case we don't find a jpg,
     # which is actually impossible in this program since our read_urls() method
     # searches for a jpg, but hey I'm thinking reuse here.
@@ -145,35 +190,88 @@ def download_images(img_urls, dest_dir):
     match = re.search(r'(\.jpg)\s*$', url)
     if match:
       img_file_extension = match.group(1)
+     
     dest_filename = 'img' + string_num + img_file_extension
-    print dest_filename
+    if db: print dest_filename + ' (' + original_filename + ')'
     abs_dest_filename = abs_target_dir_exists + '/' + dest_filename
     local_dest_filename = dest_dir + '/' + dest_filename
+    backup_dest_filename = 'images_orig_name/' + original_filename
     abs_dest_filename_list.append(abs_dest_filename)
     local_dest_filename_list.append(local_dest_filename)
-    if db: print lineno(), 'abs_dest_filename_list = ', abs_dest_filename_list
-    if db: print lineno(), 'local_dest_filename_list = ', local_dest_filename_list
+    # if db: print lineno(), 'abs_dest_filename_list = ', abs_dest_filename_list
+    # if db: print lineno(), 'local_dest_filename_list = ', local_dest_filename_list
     # ufile is a file-like object
     ufile = urllib.urlopen(url)
     info = ufile.info() # -- the meta info for that request. info.gettype() is the
     file_type = info.gettype() # -- the meta info for that request. info.gettype() is the
-    if db: print lineno(), 'file_type = ', file_type
-    if db: print lineno(),  'file_type: ', file_type
-    # download the url data to the given file path
-    val = urllib.urlretrieve(url, local_dest_filename) 
+    db = False
+    # if db: print lineno(), 'file_type = ', file_type
+    if file_type != 'image/jpeg': 
+      backup_dest_filename = backup_dest_filename + '.txt'
+      local_dest_filename = local_dest_filename + '.txt'
+    else:
+      backup_dest_filename_list.append(backup_dest_filename)
+
+      # download the url data to the given file path
+      val = urllib.urlretrieve(url, local_dest_filename) 
+      val = urllib.urlretrieve(url, backup_dest_filename) 
+      sort_key = (original_filename.split('.')[0]).split('-')[-1]
+      orig_fname_dict[sort_key] = original_filename
+      orig_fname_dest_dict[sort_key] = backup_dest_filename
+      if db: print lineno(), 'orig_fname_dict[' + sort_key + '] = ' + orig_fname_dict[sort_key]
+      print lineno(), 'orig_fname_dest_dict[' + sort_key + '] = ' + orig_fname_dest_dict[sort_key]
+  #  if i > 5: 
+  #    break
+ 
+  db = True
+  sorted_orig_fname_paths = []
+  for key in sorted(orig_fname_dest_dict.keys()):
+    sorted_orig_fname_paths.append(orig_fname_dest_dict[key])
+  print
+  print
+  print lineno(), 'sorted_orig_fname_paths', sorted_orig_fname_paths
+  print
+  print lineno(), 'puzzle_name = ', puzzle_name
+  if puzzle_name == 'place':
+    print lineno(), 'making html for place puzzle'
+    make_place_html(sorted_orig_fname_paths, './')
+  else:
+    make_html(local_dest_filename_list, './' )
+  # sys.exit(0)     
+
   # save results for debugging
   f = open('abs_dest_list.txt', 'w')
   print>>f, abs_dest_filename_list
   f.close()
-  if db: print 'local_dest_filename_list = ', local_dest_filename_list
-  make_html(local_dest_filename_list)
+  # print lineno(), 'puzzle_name:', puzzle_name
+  orig_fname_dict_vals_list = []
+  orig_fname_dict_keys_sorted = sorted(orig_fname_dict.keys())
+
+  for key in orig_fname_dict_keys_sorted:
+    fname_val = orig_fname_dict[key]
+    orig_fname_dict_vals_list.append(fname_val)
+  if db: print lineno(), 'orig_fname_dict_vals_list = ', orig_fname_dict_vals_list
+     
+  # if db: print 'local_dest_filename_list = ', local_dest_filename_list
+  f = open('orig_fname_dict_keys_sorted.txt', 'w')
+  print>>f, sorted(orig_fname_dict.keys())
+  f.close()
+  f=open('backup_dest_filename_list.txt', 'w')
+  print>>f, backup_dest_filename_list
+  f.close()
+
+  # urls = sorted(url_dict.keys())
+  
   f = open('local_dest_list.txt', 'w')
   print>>f, local_dest_filename_list
   f.close()
   return
 
 
+
 def main():
+  global db 
+  global puzzle_name
   db = False
   args = sys.argv[1:]
   # print 'args = ', args
@@ -188,6 +286,9 @@ def main():
     del args[0:2]
     if db: print lineno(), 'args = ', args 
 
+  filename = args[0]
+  puzzle_name = filename.split('_')[0]
+  print lineno(), 'puzzle_name = ', puzzle_name
   img_urls = read_urls(args[0])
   if db: print lineno(), 'img_urls = ', img_urls
 
@@ -195,9 +296,9 @@ def main():
     if db: print lineno(), 'todir = ', todir
     download_images(img_urls, todir)
     if db: print lineno(), 'downloaded images!'
-    # make_html(img_urls, todir) 
   else: # user entered only one param: logfile
     print
+    print 'User entered only one param: logfile'
     print '\n'.join(img_urls)
 
 if __name__ == '__main__':
