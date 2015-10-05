@@ -21,7 +21,7 @@ echo
 # delete old results
 # rm -rf /home/codio/workspace/logpuzzle/imgs
 rm -rf imgs
-./logpuzzle.py --todir imgs place_developers.google.com
+./logpuzzle.py --todir imgs animal_developers.google.com
 
 echo
 tree imgs
