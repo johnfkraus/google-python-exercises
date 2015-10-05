@@ -32,7 +32,7 @@ Create an html file that displays the retrieved images
 def make_html(local_img_urls_list, todir):
   db = False
   if db: print lineno(), 'local_img_urls_list:', local_img_urls_list
-  html = '<html><head><title>John\'s Google Pythone logpuzzle exercise solution</title></head><body>'
+  html = '<html><head><title>John\'s Google Python ' + puzzle_name + ' logpuzzle exercise solution</title></head><body>'
   for img_url in local_img_urls_list:
     html = html + '<img src=\"' + img_url + '\">'
   html = html + '</body></html>'
@@ -42,7 +42,7 @@ def make_html(local_img_urls_list, todir):
   # soup=bs(root)                #make BeautifulSoup
   # prettyHTML=soup.prettify()   #prettify the html
   # print 'html = ', html
-  f = open('image_view.html', 'w')
+  f = open(puzzle_name + '_image_view.html', 'w')
   f.write(html)
   f.close()
   return 
@@ -60,7 +60,7 @@ def make_place_html(sorted_orig_fname_paths, todir):
   # soup=bs(root)                #make BeautifulSoup
   # prettyHTML=soup.prettify()   #prettify the html
   # print lineno(),  'html = ', html
-  f = open(puzzle_name + ' image_view.html', 'w')
+  f = open(puzzle_name + '_image_view.html', 'w')
   f.write(html)
   f.close()
   print lineno(), 'html = ', html[:900]
@@ -175,7 +175,7 @@ def download_images(img_urls, dest_dir):
   i = 0
   for url in img_urls:
     i+=1 
-    print lineno(), 'i = ', + i
+    if db: print lineno(), 'i = ', + i
     # if i> 3: db = False
     original_filename = url.split('/')[-1]
     if db: print lineno(), 'original_filename', original_filename,  'url: ', url
@@ -192,7 +192,15 @@ def download_images(img_urls, dest_dir):
       img_file_extension = match.group(1)
      
     dest_filename = 'img' + string_num + img_file_extension
-    if db: print dest_filename + ' (' + original_filename + ')'
+    # print as specified sort of 
+    if puzzle_name == 'animal':
+      if db: print lineno(), puzzle_name
+      print dest_filename + ' (' + original_filename + ')',
+      if i % 3 == 0: print
+    else:
+      if db: print lineno(), puzzle_name
+      print i, original_filename,
+      if i % 4 == 0: print
     abs_dest_filename = abs_target_dir_exists + '/' + dest_filename
     local_dest_filename = dest_dir + '/' + dest_filename
     backup_dest_filename = 'images_orig_name/' + original_filename
@@ -204,8 +212,6 @@ def download_images(img_urls, dest_dir):
     ufile = urllib.urlopen(url)
     info = ufile.info() # -- the meta info for that request. info.gettype() is the
     file_type = info.gettype() # -- the meta info for that request. info.gettype() is the
-    db = False
-    # if db: print lineno(), 'file_type = ', file_type
     if file_type != 'image/jpeg': 
       backup_dest_filename = backup_dest_filename + '.txt'
       local_dest_filename = local_dest_filename + '.txt'
@@ -219,19 +225,15 @@ def download_images(img_urls, dest_dir):
       orig_fname_dict[sort_key] = original_filename
       orig_fname_dest_dict[sort_key] = backup_dest_filename
       if db: print lineno(), 'orig_fname_dict[' + sort_key + '] = ' + orig_fname_dict[sort_key]
-      print lineno(), 'orig_fname_dest_dict[' + sort_key + '] = ' + orig_fname_dest_dict[sort_key]
+      if db: print lineno(), 'orig_fname_dest_dict[' + sort_key + '] = ' + orig_fname_dest_dict[sort_key]
   #  if i > 5: 
   #    break
  
-  db = True
   sorted_orig_fname_paths = []
   for key in sorted(orig_fname_dest_dict.keys()):
     sorted_orig_fname_paths.append(orig_fname_dest_dict[key])
-  print
-  print
-  print lineno(), 'sorted_orig_fname_paths', sorted_orig_fname_paths
-  print
-  print lineno(), 'puzzle_name = ', puzzle_name
+  if db: print lineno(), 'sorted_orig_fname_paths', sorted_orig_fname_paths
+  if db: print lineno(), 'puzzle_name = ', puzzle_name
   if puzzle_name == 'place':
     print lineno(), 'making html for place puzzle'
     make_place_html(sorted_orig_fname_paths, './')
