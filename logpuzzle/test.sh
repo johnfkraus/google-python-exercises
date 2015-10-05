@@ -23,5 +23,6 @@ echo
 rm -rf imgs
 ./logpuzzle.py --todir imgs animal_developers.google.com
 
+echo
 tree imgs
 
