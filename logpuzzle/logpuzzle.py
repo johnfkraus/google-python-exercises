@@ -15,6 +15,9 @@ import inspect
 
 import shutil
 import commands
+# from BeautifulSoup import BeautifulSoup as bs
+import BeautifulSoup as bs
+# import beautifulsoup
 
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
@@ -30,16 +33,22 @@ def make_html(img_urls, img_dir):
   # abs_paths_list = []
   # filenames = os.listdir(img_dir)
   # print lineno(),  'filenames = ', filenames
-  html = '<verbatim><html><head></head><body>'
+  html = '<html><head><title>John\'s Google Pythone logpuzzle exercise solution</title></head><body>'
 
   for img_url in img_urls:
     html = html + '<img src=\"' + img_url + '\">'
 
   html = html + '</body></html>'
+  root = html
+  #  root=lh.tostring(sliderRoot) #convert the generated HTML to a string
+  soup=bs(root)                #make BeautifulSoup
+  prettyHTML=soup.prettify()   #prettify the html
   print 'html = ', html
   f = open('images.html', 'w')
   f.write(html)
   f.close()
+
+
 
   """
   for filename in filenames:
@@ -119,10 +128,13 @@ def read_urls(filename):
 
 
 
+
 def download_images(img_urls, dest_dir):
+  db = True
   """Given the urls already in the correct order, downloads
   each image into the given directory.
   Gives the images local filenames img0, img1, and so on.
+  Prints 'Retreiving...' and prints local filenames as retrieved.
   Creates an index.html in the directory
   with an img tag to show each local image file.
   Creates the directory if necessary.
@@ -132,27 +144,32 @@ def download_images(img_urls, dest_dir):
   abs_target_dir_exists = make_abs_target_basename_exists(dest_dir)
   # i is index for image file numbering
   i = 0
+  print 'Retrieving...'
   for url in img_urls:
+    print lineno(), 'url: ', url
     i+=1 
-    # make number into string with leading zeros
-    string_num = str(i).zfill(3) 
-    filename = 'animal' + '_' + string_num
-    # print lineno(), 'filename:', filename
+    # make integer for appending to 'img' filename into string with leading zeros
+    string_num = str(i).zfill(2) 
+    filename = 'img' + string_num
+    print lineno(), 'filename:', filename,
     match = re.search(r'(\.jpg)\s*$', url)
     img_file_extension = '.img'
     if match:                                                                                                                                                       
-      if db: print 'found match.group: ', match.group()                                                                                                             
-      # print 'found match.group(1): ', match.group(1)                                                                                                         
+      if db: print lineno(),  'found match.group: ', match.group()                                                                                                             
+      if db: print lineno(),  'found match.group(1): ', match.group(1)                                                                                                         
       img_file_extension = match.group(1)                                                                                                         
       # print 'img_file_extension: ', img_file_extension
+    print lineno()
     dest_filename = abs_target_dir_exists + '/' + filename + img_file_extension
-    # print 'dest_filename = ', dest_filename
+    if db: print lineno(), 'dest_filename = ', dest_filename
     ufile = urllib.urlopen(url)
     info = ufile.info() # -- the meta info for that request. info.gettype() is the
-    print 'info: ', info 
+    file_type = info.gettype() # -- the meta info for that request. info.gettype() is the
+    # print 'info: ', info 
+    print lineno(),  'file_type: ', file_type
     # val = urllib.urlretrieve(ufile, dest_filename) 
     # -- downloads the url data to the given file path need to make a path out of dest_dir!  mime time, e.g.  'text/html
-    print 'val: ', val
+    # print 'val: ', val
   return
 
 
