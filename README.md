@@ -1,9 +1,8 @@
 
-JK completed the Google Python Exercises on October 5, 2015.
-
+JK completed the excellent Google Python Exercises on October 5, 2015.
 
 Used the online IDE codeio here:
-	https://codio.com/johnfkraus/google-python-exercises/terminal/backend-1444079603592
+	https://codio.com/johnfkraus/google-python-exercises
 
 Completed exercises are here:
 	https://github.com/johnfkraus/google-python-exercises
