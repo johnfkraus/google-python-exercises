@@ -19,13 +19,18 @@ Inline-style:
 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
+![alt text](https://github.com/johnfkraus/google-python-exercises/blob/master/logpuzzle/animal_results_screenshot.png "animal log puzzle result screenshot")
 
 
 Reference-style: 
 
 ![alt text][logo]
 
+![alt text][place]
 
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+
+[place]: https://github.com/johnfkraus/google-python-exercises/blob/master/logpuzzle/place_puzzle_solution_image.PNG "place log puzzle result screenshot"
+
 
 
