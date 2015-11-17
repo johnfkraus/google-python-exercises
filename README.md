@@ -1,6 +1,8 @@
 
 JK completed the excellent Google Python Exercises on October 5, 2015.
 
+Google's Python Class: https://developers.google.com/edu/python/
+
 Used the online IDE codeio here:
 	https://codio.com/johnfkraus/google-python-exercises
 
