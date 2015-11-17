@@ -15,6 +15,8 @@ The Google Python tutorial was excellent IMHO.
  
 Spoiler alert!
 
+Image results from my logpuzzle solution:
+
 ![alt text](https://github.com/johnfkraus/google-python-exercises/blob/master/logpuzzle/animal_results_screenshot.png "animal log puzzle result screenshot")
 
 ![alt text][place]
