@@ -18,6 +18,3 @@ Spoiler alert!
 ![alt text][place]
 
 [place]: https://github.com/johnfkraus/google-python-exercises/blob/master/logpuzzle/place_puzzle_solution_image.PNG "place log puzzle result screenshot"
-
-
-
