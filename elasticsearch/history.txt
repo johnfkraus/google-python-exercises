@@ -1,0 +1,500 @@
+   44  ll
+   45  mv -nv ~/Downloads/mp4b/* .
+   46  ls ~/Downloads/mp4b/
+   47  cd ~/Documents
+   48  ll
+   49  cd receipts2/
+   50  l
+   51  ll
+   52  cd mp4/
+   53  ll
+   54  pwd
+   55  pwd
+   56  cd /Volumes/LACIE\ SHARE/Documents/videomp4/
+   57  ll
+   58  mv -nv ~/Documents/receipts2/mp4/* .
+   59  ll ~/Documents/receipts2/mp4
+   60  cd ../
+   61  ll
+   62  mkdir duplicate-videos-maybe
+   63  cd duplicate-videos-maybe/
+   64  mv ~/Documents/receipts2/mp4/* .
+   65  cd ~/Documents/receipts2/
+   66  ll
+   67  tree .
+   68  rmdir mp4/
+   69  cd mp4/
+   70  ll
+   71  cd ../
+   72  rm -rf mp4
+   73  ll
+   74  cd ../
+   75  ll
+   76  rm -rf receipts2/
+   77  ll
+   78  df -h
+   79  exit
+   80  cd Downloads/
+   81  ll
+   82  rm *.crdownload
+   83  ll
+   84  ll
+   85  ll
+   86  df -h
+   87  df -h
+   88  df -h
+   89  df -h
+   90  df -h
+   91  df -h
+   92  df -h
+   93  df -h
+   94  df -h
+   95  df -h
+   96  df -h
+   97  df -h
+   98  df -h
+   99  df -h
+  100  df -h
+  101  df -h
+  102  df -h
+  103  df -h
+  104  df -h
+  105  df -h
+  106  df -h
+  107  df -h
+  108  df -h
+  109  df -h
+  110  df -h
+  111  df -h
+  112  df -h
+  113  exit
+  114  sudo su
+  115  man srm
+  116  srm --help
+  117  which srm
+  118  which gshred
+  119  man gshred
+  120  df -h
+  121  df -h
+  122  df -h
+  123  df -h
+  124  df -h
+  125  df -h
+  126  df -h
+  127  df -h
+  128  df -h
+  129  df -h
+  130  cd Downloads/
+  131  l
+  132  ll
+  133  mv -nv *.mp4 /Volumes/LACIE\ SHARE/Documents/videomp4/
+  134  mv -nv *.mp4 /Volumes/LACIE\ SHARE/Documents/videomp4/
+  135  ll
+  136  rm Cute\ Skinny\ Teen\ Playing\ have\ Fun\ with\ Ohmibod\ in\ Pussy\ on\ Webcam\ -\ Pornhubcom.mp4 
+  137  rm Micro\ Bikini\ Babe\ Shows\ off\ in\ Public\ -\ Pornhubcom.mp4 
+  138  rm Bikini-\ Pleasure\ -\ Pornhubcom.mp4 
+  139  ll
+  140  ls *.mp4
+  141  rm Extreme\ Bikini\ Babe\ Kagney\ Linn\ Karter\ Pounds\ her\ Pussy\ -\ Pornhubcom.mp4 
+  142  rm .com.google.Chrome.AN8X25 
+  143  ll
+  144  ll
+  145  ll
+  146  exit
+  147  df -h
+  148  df -h
+  149  cd Downloads/
+  150  ll
+  151  mv *.mp4 mp4b/
+  152  ll
+  153  tree mp4b/
+  154  cd mp4b/
+  155  ll
+  156  rm Clip\ \(August\ *
+  157  ll
+  158  ll
+  159  mkdir messervideos
+  160  ll
+  161  rmdir messervideos/
+  162  cd ../
+  163  ll
+  164  mkdir messervideos
+  165  mv sy0-501-section0-video.zip messervideos/
+  166  ll
+  167  ll
+  168  mv sy0-501-section3-video.zip messervideos/
+  169  ll
+  170  cd messervideos/
+  171  ll
+  172  unzip sy0-501-section0
+  173  unzip sy0-501-section0-video.zip 
+  174  ll
+  175  unzip sy0-501-section3-video.zip 
+  176  ll
+  177  ll
+  178  unzip sy0-501-section1-video.zip 
+  179  unzip sy0-501-section2-video.zip 
+  180  ll
+  181  unzip sy0-501-section4-video.zip 
+  182  unzip sy0-501-section5-video.zip 
+  183  unzip sy0-501-section6-video.zip 
+  184  ls -lt
+  185  ls -l
+  186  ls *.srt
+  187  cat sy0-501-0001-01-how-to-pass-your-security-plus-exam-v1.srt 
+  188  ll
+  189  mkdir zipmesser
+  190  mv *.zip zipmesser/
+  191  ll
+  192  mv *.srt zipmesser/
+  193  ll
+  194  df -h
+  195  cd ../
+  196  ll
+  197  mkdir toBeFiledOrArchived
+  198  cd /Volumes/
+  199  ll
+  200  cd UBUNTU_103/
+  201  ll
+  202  cd TRIPLEK/
+  203  ll
+  204  cd Logs/
+  205  ll
+  206  cd ../
+  207  ll
+  208  cd cactus/
+  209  ll
+  210  cd ../
+  211  ll
+  212  cp -rf Logs ~/workspaces/
+  213  cd john
+  214  ll
+  215  tree . | more
+  216  ll
+  217  cd anna/
+  218  ll
+  219  cd turbotax-anna/
+  220  ll
+  221  tree . | more
+  222  ll
+  223  cd turbotax
+  224  ll
+  225  file .
+  226  ll
+  227  file
+  228  file *
+  229  cd ../
+  230  ll
+  231  cd ../
+  232  ll
+  233  cd ../
+  234  ll
+  235  cd nuwave/
+  236  ll
+  237  cd /Volumes/UBUNTU_103/
+  238  ll
+  239  df -h
+  240  exit
+  241  docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+  242  exit
+  243  vim installettercap.txt
+  244  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+  245  df -h
+  246  brew install ettercap
+  247  ettercap
+  248  man ettercap
+  249  man ettercap
+  250  ettercap -i
+  251  ettercap --help
+  252  ettercap -G
+  253  ettercap -P list
+  254  ll
+  255  docker pull docker.elastic.co/kibana/kibana:6.3.2
+  256  cd /etc
+  257  ll
+  258  cd /etc
+  259  ll
+  260  which docker-compose
+  261  exit
+  262  screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+  263  ettercap -I
+  264  git status
+  265  git init
+  266  git status
+  267  git add --all
+  268  git commit -m 'init'
+  269  git checkout -b develop
+  270  git status
+  271  ll
+  272  cd johnkraus/
+  273  ll
+  274  cd src/
+  275  ll
+  276  cd kotlininaction/
+  277  ll
+  278  kotlinc Hello.kt 
+  279  which koton
+  280  which kotlin
+  281  ll
+  282  cd src/geometry/
+  283  ll
+  284  cd shapes/
+  285  ll
+  286  rmdir example/
+  287  ll
+  288  cd ../
+  289  ll
+  290  ll
+  291  cd shapes/
+  292  ll
+  293  mv Rectangle.kt ../
+  294  ll
+  295  cd ../
+  296  ll
+  297  cd example/
+  298  ll
+  299  mv Example.kt ../
+  300  ll
+  301  cd ../
+  302  ll
+  303  ll
+  304  rmdir example/
+  305  ll
+  306  ll
+  307  rm shapes/
+  308  rmdir shapes/
+  309  ll
+  310  git status
+  311  cd ../
+  312  ll
+  313  cd ../
+  314  ll
+  315  git status
+  316  git init
+  317  git add --all
+  318  git status
+  319  git status
+  320  git status
+  321  git add --all
+  322  git commit -m 'init'
+  323  git status
+  324  git checkout -b develop
+  325  git status
+  326  vim .gitignore 
+  327  git status
+  328  git add --all
+  329  git commit -m 'ch 2'
+  330  git status
+  331  ncat --exec "/bin/bash" -l 8081 --keep-open
+  332  ettercap
+  333  arp -a
+  334  netstat
+  335  df -h
+  336  df -h
+  337  df -h
+  338  df -h
+  339  df -h
+  340  df -h
+  341  df -h
+  342  df -h
+  343  df -h
+  344  ll
+  345  ws
+  346  ll
+  347  cd kotlin-in-action/
+  348  ll
+  349  ll
+  350  cd src/
+  351  ll
+  352  cp -rf ch* ~/workspaces/sandbox/src/
+  353  ll
+  354  ws
+  355  ll
+  356  cd sandbox/
+  357  ll
+  358  cd src/
+  359  ll
+  360  mkdir jk
+  361  mv geometry/ jk/
+  362  ll
+  363  mv *.kt jk/
+  364  ll
+  365  kotlinc
+  366  cd
+  367  find . -iname kotlinc
+  368  arp -a
+  369  cd
+  370  arp -a
+  371  find -iname 'gradle*'
+  372  find . -iname 'gradle*'
+  373  pwd
+  374  cp /Volumes/35GBDEVICE/log/mp4/* ~/Downloads/mp4b/
+  375  cd Downloads/mp4b/
+  376  ll
+  377  clear
+  378  exit
+  379  arp -a
+  380  man arp
+  381  arp
+  382  arp
+  383  man arp
+  384  arp -a
+  385  arp -a
+  386  arp -a > arp-a.txt
+  387  cat arp-a.txt cat arp-a.txt 
+  388  arp -a
+  389  arp -a
+  390  arp -a
+  391  arp -a
+  392  arp -a
+  393  which wireshark
+  394  which arp
+  395  which ncat
+  396  ncat
+  397  man ncat
+  398  ping localhost:8081
+  399  curl -X GET "http://localhost:8081"
+  400  man ssh
+  401  ssh http://localhost;8081
+  402  telnet
+  403  exit
+  404  ws
+  405  cd keras/
+  406  ll
+  407  cd deepLearning/
+  408  ll
+  409  vi naive_relu.py 
+  410  python naive_relu.py 
+  411  vi naive_relu.py 
+  412  vim naive_relu.py 
+  413  python naive_relu.py 
+  414  vim naive_relu.py 
+  415  python naive_relu.py 
+  416  vim naive_relu.py 
+  417  python naive_relu.py 
+  418  python naive_relu.py :wq
+  419  exit
+  420  ll
+  421  vim devnotes.txt
+  422  ws
+  423  cd keras/
+  424  ll
+  425  more mysubs.py 
+  426  more ez.txt 
+  427  more setup.py 
+  428  ll
+  429  more vectorize_sequences.py 
+  430  tree .
+  431  cd deepLearning/
+  432  ll
+  433  more *.py
+  434  vim naive_relu.py
+  435  ll
+  436  more tensors.py 
+  437  ll
+  438  python tensors.py 
+  439  vim tensors.py 
+  440  exit
+  441  ws
+  442  cd deep-learning-with-python-notebooks/
+  443  ll
+  444  jupyter notebook
+  445  original_dataset_dir = '/Users/johnkraus/Downloads/kaggle_original_data'
+  446  base_dir = '/Users/johnkraus/Downloads/cats_and_dogs_small'
+  447  os.mkdir(base_dir)
+  448  train_dir = os.path.join(base_dir, 'train')
+  449  os.mkdir(train_dir)
+  450  validation_dir = os.path.join(base_dir, 'validation')
+  451  os.mkdir(validation_dir)
+  452  test_dir = os.path.join(base_dir, 'test')
+  453  os.mkdir(test_dir)
+  454  train_cats_dir = os.path.join(train_dir, 'cats')
+  455  os.mkdir(train_cats_dir)
+  456  train_dogs_dir = os.path.join(train_dir, 'dogs')
+  457  os.mkdir(train_dogs_dir)
+  458  validation_cats_dir = os.path.join(validation_dir, 'cats')
+  459  os.mkdir(validation_cats_dir)
+  460  validation_dogs_dir = os.path.join(validation_dir, 'dogs')
+  461  os.mkdir(validation_dogs_dir)
+  462  python
+  463  cd Downloads/
+  464  ll
+  465  mkdir kaggle_original_dataset
+  466  mv all.zip kaggle_original_dataset/
+  467  cd kaggle_original_dataset/
+  468  ll
+  469  unzip all.zip 
+  470  more sampleSubmission.csv 
+  471  ll
+  472  unzip test1.zip 
+  473  ll
+  474  unzip train.zip 
+  475  ws
+  476  ll
+  477  cd deep-learning-with-python-notebooks/
+  478  ls
+  479  jupyter notebook
+  480  jupyter notebook
+  481  exit
+  482  df -h
+  483  df -h
+  484  df -h
+  485  df -h
+  486  df -h
+  487  exit
+  488  cd Downloads/
+  489  ll
+  490  pwd
+  491  cd /Volumes/LACIE\ SHARE/Documents/
+  492  pwd
+  493  mv ~/Downloads/mp4b .
+  494  ll
+  495  cd mp4b/
+  496  ll
+  497  cd
+  498  cd Downloads/
+  499  ll
+  500  exit
+  501  ll
+  502  ll
+  503  ws
+  504  git clone git@github.com:johnfkraus/google-python-exercises.git
+  505  ll
+  506  cd google-python-exercises/
+  507  ll
+  508  ll
+  509  cd copyspecial/
+  510  ll
+  511  python -V
+  512  os.__file__
+  513  python
+  514  ll
+  515  python copyspecial2.py 
+  516  python copyspecial.py 
+  517  mv copyspecial.py copyspecial3.py
+  518  ll
+  519  conda
+  520  conda env
+  521  conda env --help
+  522  conda env list
+  523  conda create -h
+  524  conda create -n es elasticsearch
+  525   conda update -n base -c defaults conda
+  526  conda create -n es elasticsearch
+  527  source activate es
+  528  ls
+  529  cd ../
+  530  ll
+  531  mkdir elasticsearch
+  532  cd elasticsearch/
+  533  ll
+  534  vim test.py
+  535  git status
+  536  git add --all
+  537  git status
+  538  mv test.py es-test.py
+  539  git status
+  540  git add --all
+  541  git commit -m 'added es dir'
+  542  history
+  543  history > history.txt
